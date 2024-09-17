@@ -1,0 +1,96 @@
+/* Oculta o menu original do Django Admin */
+#sidebar {
+    display: none !important; /* Usa !important para garantir que o estilo seja aplicado */
+}
+
+#content-main {
+    margin-left: 0 !important; /* Ajusta a margem do conteúdo principal para preencher o espaço */
+}
+
+/* Contêiner do menu principal */
+#menu {
+    display: flex;
+    justify-content: flex-start; /* Alinha os grupos à esquerda da tela */
+    padding: 0;
+    margin: 0;
+    background-color: #40798c; /* Cor de fundo do menu principal */
+    border-bottom: 2px solid #555; /* Adiciona uma borda inferior ao menu principal */
+    position: relative; /* Define a posição relativa para permitir ajustes dos submenus */
+    left: 0; /* Remove qualquer ajuste para a esquerda */
+}
+
+/* Estilo dos itens do menu principal */
+.custom-admin-menu {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Remove os marcadores padrão da lista */
+}
+
+/* Estilo dos itens do menu principal */
+.custom-admin-menu > li {
+    position: relative;
+    margin-right: 120px; /* Espaço entre os grupos de menu */
+}
+
+/* Remove qualquer marcador ou ícone padrão ao lado dos itens de menu */
+.custom-admin-menu > li::before {
+    content: none; /* Remove o quadradinho ou marcador */
+}
+
+/* Estilo dos links no menu principal */
+.custom-admin-menu > li > a {
+    text-decoration: none;
+    color: #fff; /* Cor do texto dos links */
+    padding: 8px 16px;
+    display: block;
+    background-color: #40798c; /* Cor de fundo do item de menu */
+    border-radius: 4px; /* Bordas arredondadas para o item de menu */
+    font-weight: bold; /* Negrito para destacar o texto */
+}
+
+/* Cor de fundo dos itens do menu ao passar o mouse */
+.custom-admin-menu > li > a:hover {
+    background-color: #0056b3; /* Cor de fundo no hover */
+}
+
+/* Estilo do submenu */
+.dropdown-menu {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    top: 100%; /* Alinha o submenu ao fundo do item de menu */
+    left: 0; /* Alinha o submenu com o item do menu */
+    background-color: #40798c; /* Cor de fundo do submenu */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    white-space: nowrap; /* Impede a quebra de linha dos itens do submenu */
+    border: 1px solid #444; /* Adiciona uma borda ao submenu */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adiciona sombra para destacar o submenu */
+    z-index: 1000; /* Garante que o submenu esteja acima de outros elementos */
+}
+
+/* Exibe o submenu ao passar o mouse sobre o item do menu principal */
+.custom-admin-menu > li:hover .dropdown-menu {
+    display: block; /* Mostra o submenu ao passar o mouse */
+    flex-direction: column; /* Exibe os itens do submenu verticalmente */
+}
+
+/* Estilo dos itens do submenu */
+.dropdown-menu li {
+    margin: 0;
+}
+
+/* Estilo dos links no submenu */
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #fff; /* Cor do texto dos itens do submenu */
+    font-weight: bold; /* Negrito para destacar o texto */
+}
+
+/* Cor de fundo dos itens do submenu ao passar o mouse */
+.dropdown-menu li a:hover {
+    background-color: #355e62; /* Cor de fundo no hover do submenu */
+}

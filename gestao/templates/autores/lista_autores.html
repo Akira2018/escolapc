@@ -1,0 +1,16 @@
+##lista_autores.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Autores</title>
+</head>
+<body>
+    <h1>Autores da Escola</h1>
+    <ul>
+        {% for autor in autores %}
+            <li>{{ autor.nome_autor }} ({{ autor.nacionalidade }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

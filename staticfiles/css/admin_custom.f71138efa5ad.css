@@ -1,0 +1,52 @@
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+    .custom-admin-menu {
+        display: block;
+        padding: 0;
+    }
+
+    .custom-admin-menu li {
+        display: block;
+        width: 100%;
+    }
+
+    .custom-admin-menu li a {
+        display: block;
+        padding: 12px;
+        background-color: #40798c;
+        color: white;
+        text-align: center;
+        border-bottom: 1px solid #fff;
+    }
+
+    .custom-admin-menu li a:hover {
+        background-color: #355e62;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: relative;
+    }
+
+    .custom-admin-menu li:hover .dropdown-menu {
+        display: block;
+        position: relative;
+    }
+
+    .dropdown-menu li {
+        display: block;
+        width: 100%;
+    }
+
+    .dropdown-menu li a {
+        padding: 12px;
+        background-color: #40798c;
+        color: white;
+        text-align: center;
+        border-bottom: 1px solid #fff;
+    }
+
+    .dropdown-menu li a:hover {
+        background-color: #355e62;
+    }
+}

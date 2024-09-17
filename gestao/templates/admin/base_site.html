@@ -1,0 +1,116 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_custom.css' %}">
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+{% endblock %}
+
+{% block nav-global %}
+    <nav id="menu">
+        <ul class="custom-admin-menu">
+            {% if request.user.is_superuser %}
+                <!-- Menu completo para superusuários -->
+                <li>
+                    <a href="#">Controle de Acervo</a>
+                    <ul class="dropdown-menu">
+                        <!--      <li><a href="{% url 'admin:gestao_autores_changelist' %}">Cadastro de Autores</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_editoras_changelist' %}">Cadastro de Editoras</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_generos_changelist' %}">Cadastro de Gêneros</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_assuntos_changelist' %}">Cadastro de Assuntos</a></li> -->
+                        <li><a href="{% url 'admin:gestao_livros_changelist' %}">Cadastro de Livros</a></li>
+                        <li><a href="{% url 'admin:gestao_videos_changelist' %}">Cadastro de Vídeos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Cadastro e Controle</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'admin:gestao_escola_changelist' %}">Cadastro da Escola</a></li>
+                        <li><a href="{% url 'admin:gestao_clientes_changelist' %}">Cadastro de Clientes</a></li>
+                        <li><a href="{% url 'admin:gestao_reservas_changelist' %}">Cadastro de Reservas</a></li>
+                        <li><a href="{% url 'admin:gestao_eventos_changelist' %}">Cadastro de Eventos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Empréstimos do Acervo</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'admin:gestao_emprestimolivro_changelist' %}">Empréstimo de Livros</a></li>
+                        <li><a href="{% url 'admin:gestao_emprestimovideo_changelist' %}">Empréstimo de Vídeos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Gerenciamento de Usuários</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'admin:gestao_user_changelist' %}">Listar Usuários</a></li>
+                        <li><a href="{% url 'admin:gestao_user_add' %}">Cadastrar Novo Usuário</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                {% with gerentes=False alunos=False %}
+                    {% for group in request.user.groups.all %}
+                        {% if group.name == 'Gerentes' %}
+                            {% with gerentes=True %}
+                            {% endwith %}
+                        {% elif group.name == 'Alunos' %}
+                            {% with alunos=True %}
+                            {% endwith %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if gerentes %}
+                        <!-- Menu para Gerentes -->
+                        {% elif request.user.groups.all.0.name == 'Gerentes' %}
+                        <li>
+                            <a href="#">Controle de Acervo</a>
+                            <ul class="dropdown-menu">
+                           <!--      <li><a href="{% url 'admin:gestao_autores_changelist' %}">Cadastro de Autores</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_editoras_changelist' %}">Cadastro de Editoras</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_generos_changelist' %}">Cadastro de Gêneros</a></li> -->
+                           <!--      <li><a href="{% url 'admin:gestao_assuntos_changelist' %}">Cadastro de Assuntos</a></li> -->
+                                <li><a href="{% url 'admin:gestao_livros_changelist' %}">Cadastro de Livros</a></li>
+                                <li><a href="{% url 'admin:gestao_videos_changelist' %}">Cadastro de Vídeos</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Cadastro e Controle</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'admin:gestao_escola_changelist' %}">Cadastro da Escola</a></li>
+                                <li><a href="{% url 'admin:gestao_clientes_changelist' %}">Cadastro de Clientes</a></li>
+                                <li><a href="{% url 'admin:gestao_reservas_changelist' %}">Cadastro de Reservas</a></li>
+                                <li><a href="{% url 'admin:gestao_eventos_changelist' %}">Cadastro de Eventos</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Empréstimos do Acervo</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'admin:gestao_emprestimolivro_changelist' %}">Empréstimo de Livros</a></li>
+                                <li><a href="{% url 'admin:gestao_emprestimovideo_changelist' %}">Empréstimo de Vídeos</a></li>
+                            </ul>
+                        </li>
+                    {% elif alunos %}
+                        {% elif request.user.groups.all.0.name == 'Alunos' %}
+                        <!-- Menu restrito para usuários do grupo "Alunos" -->
+                        <li>
+                            <a href="#">Consultas de Acervo</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'admin:gestao_livros_changelist' %}">Listagem de Livros</a></li>
+                                <li><a href="{% url 'admin:gestao_videos_changelist' %}">Listagem de Vídeos</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <p>Você não tem permissão para acessar este conteúdo.</p>
+                    {% endif %}
+                {% endwith %}
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/admin_custom.js' %}"></script>
+{% endblock %}
