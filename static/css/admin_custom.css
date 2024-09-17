@@ -15,8 +15,8 @@
     margin: 0;
     background-color: #40798c; /* Cor de fundo do menu principal */
     border-bottom: 2px solid #555; /* Adiciona uma borda inferior ao menu principal */
-    position: relative; /* Define a posição relativa para permitir ajustes dos submenus */
-    left: 0; /* Remove qualquer ajuste para a esquerda */
+    position: relative;
+    left: 0;
 }
 
 /* Estilo dos itens do menu principal */
@@ -24,10 +24,10 @@
     display: flex;
     padding: 0;
     margin: 0;
-    list-style: none; /* Remove os marcadores padrão da lista */
+    list-style: none; /* Remove marcadores de lista */
 }
 
-/* Estilo dos itens do menu principal */
+/* Itens do menu principal */
 .custom-admin-menu > li {
     position: relative;
     margin-right: 120px; /* Espaço entre os grupos de menu */
@@ -35,44 +35,53 @@
 
 /* Remove qualquer marcador ou ícone padrão ao lado dos itens de menu */
 .custom-admin-menu > li::before {
-    content: none; /* Remove o quadradinho ou marcador */
+    content: none;
 }
 
 /* Estilo dos links no menu principal */
 .custom-admin-menu > li > a {
     text-decoration: none;
     color: #fff; /* Cor do texto dos links */
-    padding: 8px 16px;
+    padding: 12px 20px; /* Aumenta o espaçamento para desktop */
     display: block;
-    background-color: #40798c; /* Cor de fundo do item de menu */
-    border-radius: 4px; /* Bordas arredondadas para o item de menu */
-    font-weight: bold; /* Negrito para destacar o texto */
+    background-color: #40798c;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1rem; /* Tamanho da fonte adequado para desktop */
+    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
 }
 
-/* Cor de fundo dos itens do menu ao passar o mouse */
-.custom-admin-menu > li > a:hover {
-    background-color: #0056b3; /* Cor de fundo no hover */
+/* Cor de fundo dos itens do menu ao passar o mouse ou ao receber foco */
+.custom-admin-menu > li > a:hover, .custom-admin-menu > li > a:focus {
+    background-color: #0056b3;
+    outline: none;
+}
+
+/* Foco visível para navegação por teclado */
+button:focus, a:focus {
+    outline: 2px solid #f00; /* Destaque para foco no teclado */
 }
 
 /* Estilo do submenu */
 .dropdown-menu {
-    display: none; /* Inicialmente oculto */
+    display: none;
     position: absolute;
-    top: 100%; /* Alinha o submenu ao fundo do item de menu */
-    left: 0; /* Alinha o submenu com o item do menu */
-    background-color: #40798c; /* Cor de fundo do submenu */
+    top: 100%;
+    left: 0;
+    background-color: #40798c;
     padding: 0;
     margin: 0;
     list-style: none;
-    white-space: nowrap; /* Impede a quebra de linha dos itens do submenu */
-    border: 1px solid #444; /* Adiciona uma borda ao submenu */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Adiciona sombra para destacar o submenu */
-    z-index: 1000; /* Garante que o submenu esteja acima de outros elementos */
+    white-space: nowrap;
+    border: 1px solid #444;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000;
 }
 
-/* Exibe o submenu ao passar o mouse sobre o item do menu principal */
-.custom-admin-menu > li:hover .dropdown-menu {
-    display: block; /* Mostra o submenu ao passar o mouse */
+/* Exibe o submenu ao passar o mouse sobre o item do menu principal ou ao focar */
+.custom-admin-menu > li:hover .dropdown-menu,
+.custom-admin-menu > li:focus-within .dropdown-menu {
+    display: block;
     flex-direction: column; /* Exibe os itens do submenu verticalmente */
 }
 
@@ -86,11 +95,40 @@
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    color: #fff; /* Cor do texto dos itens do submenu */
-    font-weight: bold; /* Negrito para destacar o texto */
+    color: #fff;
+    font-weight: bold;
+    background-color: #40798c;
 }
 
-/* Cor de fundo dos itens do submenu ao passar o mouse */
-.dropdown-menu li a:hover {
-    background-color: #355e62; /* Cor de fundo no hover do submenu */
+/* Cor de fundo dos itens do submenu ao passar o mouse ou ao receber foco */
+.dropdown-menu li a:hover, .dropdown-menu li a:focus {
+    background-color: #355e62;
+}
+
+/* Estilos globais para o corpo */
+body {
+    font-size: 100%; /* Define a fonte base como ajustável */
+    background-color: #fff;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Modo de alto contraste */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+}
+
+.high-contrast #menu {
+    background-color: #000;
+}
+
+.high-contrast .custom-admin-menu > li > a, .high-contrast .dropdown-menu li a {
+    background-color: #000;
+    color: yellow;
+}
+
+.high-contrast .custom-admin-menu > li > a:hover, .high-contrast .dropdown-menu li a:hover {
+    background-color: yellow;
+    color: #000;
 }

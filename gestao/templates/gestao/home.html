@@ -30,8 +30,9 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        .btn:hover {
+        .btn:hover, .btn:focus {
             background-color: #0056b3;
+            outline: 2px solid #0056b3; /* Melhorar visibilidade do foco */
         }
 
         /* Adaptação para telas menores */
@@ -48,21 +49,31 @@
                 font-size: 1.2rem;
             }
         }
+
+        /* Modo de alto contraste */
+        .high-contrast {
+            background-color: black;
+            color: white;
+        }
+        .high-contrast .btn {
+            background-color: yellow;
+            color: black;
+        }
     </style>
 </head>
-<body>
+<body class="{% if high_contrast %}high-contrast{% endif %}">
     <!-- Container para centralizar conteúdo -->
     <div class="center">
         <h1>Olá! Seja bem-vindo ao aplicativo para Bibliotecas</h1>
         <p>Clique no botão abaixo para acessar o aplicativo:</p>
-        <a href="/admin/" class="btn btn-primary">Acessar o Aplicativo</a>
+        <a href="/admin/" class="btn btn-primary" role="button" aria-label="Acessar o aplicativo para Bibliotecas">Acessar o Aplicativo</a>
 
         <!-- Container para a imagem -->
         <div class="image-container">
             {% load static %}
-            <img src="{{ MEDIA_URL }}/media/ImagemBiblioteca.jpg" alt="Imagem da Biblioteca">
+            <img src="{{ MEDIA_URL }}/media/ImagemBiblioteca.jpg" alt="Imagem representativa da Biblioteca">
         </div>
-        <p>Você será redirecionado automaticamente em breve...</p>
+        <p aria-live="polite">Você será redirecionado automaticamente em breve...</p>
     </div>
 
     <!-- Script para redirecionamento automático -->
@@ -71,6 +82,14 @@
             window.location.href = "/admin/";
         }, 10000); // Redireciona após 10 segundos (10000 milissegundos)
     </script>
+
+    <!-- Botão de alternância de contraste -->
+    <form method="post" action="{% url 'toggle_contrast' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn" aria-label="Alternar modo de alto contraste">
+            Alternar Modo de Contraste
+        </button>
+    </form>
 
     <!-- Formulário para autenticação (se necessário) -->
     <form method="post">

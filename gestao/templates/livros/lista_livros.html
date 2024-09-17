@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main aria-label="Conteúdo principal">
+    <section aria-labelledby="titulo-livros">
+      <h1 id="titulo-livros">Lista de Livros</h1>
+      <ul>
+        {% for livro in livros %}
+          <li>
+            <a href="{% url 'livro_detail' livro.id %}">{{ livro.titulo }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+{% endblock %}

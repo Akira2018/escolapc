@@ -2,20 +2,33 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
-from django.db import models  # Adicione essa linha
+from django.db import models
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect
 from .models import (
     Autores, Editoras, Generos, Eventos, Assuntos, Livros, Escola, Videos,
     Clientes, Reservas, EmprestimoLivro, EmprestimoVideo
 )
 
+
+# Função para alternar o modo de alto contraste e salvar na sessão
+def toggle_contrast(request):
+    # Alterna o estado do modo de alto contraste na sessão
+    current_contrast = request.session.get('high_contrast', False)
+    request.session['high_contrast'] = not current_contrast
+    return redirect('home')
+
+
 def home(request):
+    # Passa o estado de alto contraste para o template
+    high_contrast = request.session.get('high_contrast', False)
+
     if request.user.is_authenticated:
         return redirect('/admin/')
     else:
-        return render(request, 'gestao/home.html')
+        return render(request, 'gestao/home.html', {'high_contrast': high_contrast})
 
 
 def signup(request):
@@ -36,7 +49,10 @@ def signup(request):
                 return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form})
+
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'signup.html', {'form': form, 'high_contrast': high_contrast})
+
 
 def sua_visualizacao(request):
     from .forms import SeuFormulario
@@ -49,7 +65,9 @@ def sua_visualizacao(request):
     else:
         form = SeuFormulario()
 
-    return render(request, 'login.html', {'form': form})
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'login.html', {'form': form, 'high_contrast': high_contrast})
+
 
 def minha_view(request):
     if request.method == 'POST':
@@ -59,7 +77,10 @@ def minha_view(request):
             return redirect('success')
     else:
         form = LivrosForm()
-    return render(request, 'template.html', {'livros_form': form})
+
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'template.html', {'livros_form': form, 'high_contrast': high_contrast})
+
 
 class ListaLivrosView(ListView):
     model = Livros
@@ -67,40 +88,49 @@ class ListaLivrosView(ListView):
     context_object_name = 'livros'
 
     def get_queryset(self):
-        # Supondo que o usuário logado tenha uma relação com a escola
         escola_do_usuario = self.request.user.escola  # Atribui a escola do usuário logado
-        return Livros.objects.filter(escola=escola_do_usuario)  # Filtra os livros da escola do usuário
+        return Livros.objects.filter(escola=escola_do_usuario)
 
-# Movendo a função lista_autores para fora da classe
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['high_contrast'] = self.request.session.get('high_contrast', False)  # Passa o modo de alto contraste
+        return context
+
+class ListaVideosView(ListView):
+    model = Videos
+    template_name = 'videos/lista_videos.html'
+    context_object_name = 'videos'
+
+    def get_queryset(self):
+        # Supondo que o usuário logado tenha uma relação com a escola
+        escola_do_usuario = self.request.user.escola
+        return Videos.objects.filter(escola=escola_do_usuario)
+
 def lista_autores(request):
     escola_do_usuario = request.user.userprofile.escola  # Acessa a escola através do perfil do usuário
     autores = Autores.objects.filter(escola=escola_do_usuario)
-    return render(request, 'autores/lista_autores.html', {'autores': autores})
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'autores/lista_autores.html', {'autores': autores, 'high_contrast': high_contrast})
+
 
 def selecionar_escola(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
-    # Verifica se o usuário já está associado a uma escola
     escola_do_usuario = getattr(request.user, 'escola', None)  # ou request.user.userprofile.escola se usar UserProfile
     if escola_do_usuario:
-        request.session['escola_id'] = escola_do_usuario.id  # Armazena a escola na sessão
+        request.session['escola_id'] = escola_do_usuario.id
         return redirect('dashboard')
 
-    # Se o usuário não estiver associado a uma escola, permite seleção manual
     if request.method == 'POST':
         escola_id = request.POST.get('escola_id')
-
-        # Verifica se a escola selecionada existe
         escola = get_object_or_404(Escola, id=escola_id)
-
-        # Armazena a escola na sessão
         request.session['escola_id'] = escola.id
         return redirect('dashboard')
 
-    # Exibe todas as escolas para seleção, ou pode filtrar se necessário
     escolas = Escola.objects.all()
-    return render(request, 'selecionar_escola.html', {'escolas': escolas})
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'selecionar_escola.html', {'escolas': escolas, 'high_contrast': high_contrast})
 
 @login_required
 def dashboard(request):
@@ -109,6 +139,15 @@ def dashboard(request):
         escola_selecionada = Escola.objects.get(id=escola_id)
         emprestimos = EmprestimoVideo.objects.filter(escola=escola_selecionada)
     else:
-        emprestimos = EmprestimoVideo.objects.none()  # Não exibe nada se a escola não for selecionada
-    return render(request, 'dashboard.html', {'emprestimos': emprestimos})
+        emprestimos = EmprestimoVideo.objects.none()
+
+    high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+    return render(request, 'dashboard.html', {'emprestimos': emprestimos, 'high_contrast': high_contrast})
+
+def toggle_contrast(request):
+    # Alterna o estado de alto contraste na sessão
+    current_contrast = request.session.get('high_contrast', False)
+    request.session['high_contrast'] = not current_contrast
+    return redirect('home')  # Redireciona para a página inicial
+
 
