@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fdfa572-1374-435d-91fd-ab8e981eca8e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gestao/templates/livros/lista_livros.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gestao/templates/videos/lista_videos.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/scripts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Biblioteca.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Biblioteca.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EscolaPC_01.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestao/templates/gestao/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/gestao/templates/gestao/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestao/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gestao/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestao/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gestao/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/admin_custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/admin_custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gestao/templates/admin/base_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/gestao/templates/admin/base_site.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
