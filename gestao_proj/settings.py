@@ -1,84 +1,44 @@
+
 import os
 from pathlib import Path
 import django_heroku
 import dj_database_url
 from urllib.parse import urlparse
+from django.contrib.messages import constants as messages
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-li1dd3ijq(uutb#ksg*-u++-xqrs8b_h&r3wobp2^v0snk&wha'
 
 # Configuração da conexão com o Docker Engine
-#DOCKER_BASE_URL = 'unix://var/run/docker.sock'  # ou 'tcp://127.0.0.1:2375' para conexão remota
-DOCKER_BASE_URL = 'TCP://127.0.0.1:2375' ##para conexão remota
-DOCKER_API_VERSION = 'auto'  # para detectar automaticamente a versão da API Docker
-
-# SECURITY WARNING: don't run with debug turned on in production!
+DOCKER_BASE_URL = 'TCP://127.0.0.1:2375'
+DOCKER_API_VERSION = 'auto'
 
 DEBUG = True
-ALLOWED_HOSTS = ['192.168.0.203','127.0.0.1', 'localhost','.herokuapp.com']
+ALLOWED_HOSTS = ['192.168.0.203', '127.0.0.1', 'localhost', '.herokuapp.com']
 
-ADMIN_URL = 'admin/'  # Defina o URL do painel de administração
+ADMIN_URL = 'admin/'
 LOGIN_URL = '/accounts/login/'
-CSRF_COOKIE_SECURE = False  # Defina como True se estiver usando HTTPS
-
-<<<<<<< HEAD
+CSRF_COOKIE_SECURE = False
 CSRF_TRUSTED_ORIGINS = ['https://escolapc.herokuapp.com']
-=======
-CSRF_TRUSTED_ORIGINS = ['https://escolae-255a9c5574fe.herokuapp.com/']
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
-# Define o tempo de expiração da sessão em segundos (por exemplo, 1 hora)
 SESSION_COOKIE_AGE = 3600
-
-#APP_NAME = os.environ.get("FLY_APP_NAME")  # Application definition
-
-# settings.py
-
 LOGIN_REDIRECT_URL = '/accounts/profile/'
-
-# settings.py
-
-# Define o template para a página 403
 handler403 = 'django.views.defaults.permission_denied'
 
-<<<<<<< HEAD
 AUTH_USER_MODEL = 'gestao.CustomUser'
 
+# Diretório base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Configurar o diretório dos arquivos estáticos
+# Static & Media
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
 MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
-from django.contrib.messages import constants as messages
-
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
-
-MESSAGE_TAGS = {
-    messages.DEBUG: 'debug',
-    messages.INFO: 'info',
-    messages.SUCCESS: 'success',
-    messages.WARNING: 'warning',
-    messages.ERROR: 'danger',
-}
-
-=======
-# settings.py
-AUTH_USER_MODEL = 'gestao.User'  # Ajuste 'gestao' para o nome correto do seu app e 'User' para o nome do seu modelo personalizado
-
-# Diretório base do projeto
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Configurar o diretório dos arquivos estáticos
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# Configuração de Logging
-# Configuração de Logging
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+# Logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -100,21 +60,11 @@ LOGGING = {
     },
 }
 
-# Configure TEMPLATE_DIR
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'gestao/templates')
-
-# Configuração dos Templates
-import os
-from pathlib import Path  # Importe pathlib para lidar com caminhos
-
-# Diretório base do projeto
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Configure TEMPLATES
+# Templates
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'gestao', 'templates')],
+        'DIRS': [BASE_DIR / 'gestao' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,6 +77,7 @@ TEMPLATES = [
     },
 ]
 
+# Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -136,7 +87,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'grappelli',
-    'gestao.apps.GestaoConfig',  # Mantenha apenas esta linha para evitar duplicidade
+    'gestao.apps.GestaoConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,43 +95,33 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # Certifique-se de que esse middleware está presente
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-<<<<<<< HEAD
     'gestao.middleware.ForeignKeyActivationMiddleware',
-
-=======
-    #'gestao.middleware.AccessibilityMiddleware',
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 ]
 
-# Configurações do Whitenoise
+# Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost',  # Incluído o esquema e a porta, se aplicável
-]
+# CORS
+CORS_ALLOWED_ORIGINS = ['http://localhost']
+CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+CORS_ALLOW_HEADERS = ['Accept', 'Accept-Language', 'Content-Language', 'Content-Type', 'Authorization']
 
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-    'PUT',
-    'PATCH',
-    'DELETE',
-    'OPTIONS',
-]
+# Messages
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
 
-CORS_ALLOW_HEADERS = [
-    'Accept',
-    'Accept-Language',
-    'Content-Language',
-    'Content-Type',
-    'Authorization',
-]
-
+# Admin interface customizations
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Django administration',
     'MENU': (
@@ -191,32 +132,17 @@ SUIT_CONFIG = {
 }
 
 ROOT_URLCONF = 'gestao.urls'
-
 WSGI_APPLICATION = 'gestao_proj.wsgi.application'
 
-# Configurações do Banco de Dados
-
+# Database (SQLite example)
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'Biblioteca.sqlite3'),
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'Biblioteca.sqlite3',
+    }
 }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'bdbiblia',
-#        'USER': 'root',
-#        'PASSWORD': 'Bauru2024',
-#        'HOST': 'localhost',  # ou o endereço do seu servidor de banco de dados
-#        'PORT': '3306',  # a porta padrão do MySQL
-#    }
-#}
-
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -232,37 +158,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
-# Outras configurações
+# Localization
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_L10N = False
 USE_TZ = True
 
-import os
-from pathlib import Path
-
-# Diretório base do projeto
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Arquivos de Mídia (Imagens)
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-IMAGEM_LIVROS = os.path.join(MEDIA_ROOT, 'Livros', 'Imagembiblioteca.jpg')
-
-SQLITE3_ROOT = os.path.join(BASE_DIR, 'sqlite3')
+# Extras
+IMAGEM_LIVROS = MEDIA_ROOT / 'Livros' / 'Imagembiblioteca.jpg'
+SQLITE3_ROOT = BASE_DIR / 'sqlite3'
 SQLITE3_URL = "/venv/"
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Heroku settings
 django_heroku.settings(locals())
