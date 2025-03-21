@@ -21,7 +21,7 @@ ADMIN_URL = 'admin/'  # Defina o URL do painel de administração
 LOGIN_URL = '/accounts/login/'
 CSRF_COOKIE_SECURE = False  # Defina como True se estiver usando HTTPS
 
-CSRF_TRUSTED_ORIGINS = ['https://escolae-255a9c5574fe.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://escolapc.herokuapp.com']
 
 # Define o tempo de expiração da sessão em segundos (por exemplo, 1 hora)
 SESSION_COOKIE_AGE = 3600
@@ -37,24 +37,16 @@ LOGIN_REDIRECT_URL = '/accounts/profile/'
 # Define o template para a página 403
 handler403 = 'django.views.defaults.permission_denied'
 
-# settings.py
-<<<<<<< HEAD
-#AUTH_USER_MODEL = 'gestao.User'  # Ajuste 'gestao' para o nome correto do seu app e 'User' para o nome do seu modelo personalizado
-
 AUTH_USER_MODEL = 'gestao.CustomUser'
-=======
-AUTH_USER_MODEL = 'gestao.User'  # Ajuste 'gestao' para o nome correto do seu app e 'User' para o nome do seu modelo personalizado
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
-# Diretório base do projeto
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Configurar o diretório dos arquivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+MEDIA_ROOT = BASE_DIR / 'media'
 
-<<<<<<< HEAD
 from django.contrib.messages import constants as messages
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -67,10 +59,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-# Configuração de Logging
-# Configuração de Logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -141,12 +129,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-<<<<<<< HEAD
     'gestao.middleware.ForeignKeyActivationMiddleware',
 
-=======
-    #'gestao.middleware.AccessibilityMiddleware',
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 ]
 
 # Configurações do Whitenoise
