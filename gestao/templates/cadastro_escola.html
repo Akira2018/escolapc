@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Escola</h2>
+
+    <!-- Exibir mensagens -->
+    {% if messages %}
+    <div class="alert-container">
+        {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Coluna da Esquerda -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="{{ form.nome_escola.id_for_label }}" class="form-label fw-bold">{{ form.nome_escola.label }}</label>
+                    {{ form.nome_escola }}
+                    {% if form.nome_escola.errors %}
+                        <div class="text-danger">{{ form.nome_escola.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.nr_telefone.id_for_label }}" class="form-label fw-bold">{{ form.nr_telefone.label }}</label>
+                    {{ form.nr_telefone }}
+                    {% if form.nr_telefone.errors %}
+                        <div class="text-danger">{{ form.nr_telefone.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.cep.id_for_label }}" class="form-label fw-bold">{{ form.cep.label }}</label>
+                    {{ form.cep }}
+                    {% if form.cep.errors %}
+                        <div class="text-danger">{{ form.cep.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.bairro.id_for_label }}" class="form-label fw-bold">{{ form.bairro.label }}</label>
+                    {{ form.bairro }}
+                    {% if form.bairro.errors %}
+                        <div class="text-danger">{{ form.bairro.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.estado.id_for_label }}" class="form-label fw-bold">{{ form.estado.label }}</label>
+                    {{ form.estado }}
+                    {% if form.estado.errors %}
+                        <div class="text-danger">{{ form.estado.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.observacao.id_for_label }}" class="form-label fw-bold">{{ form.observacao.label }}</label>
+                    {{ form.observacao }}
+                </div>
+            </div>
+
+            <!-- Coluna da Direita -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="text-danger">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.logradouro.id_for_label }}" class="form-label fw-bold">{{ form.logradouro.label }}</label>
+                    {{ form.logradouro }}
+                    {% if form.logradouro.errors %}
+                        <div class="text-danger">{{ form.logradouro.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.cidade.id_for_label }}" class="form-label fw-bold">{{ form.cidade.label }}</label>
+                    {{ form.cidade }}
+                    {% if form.cidade.errors %}
+                        <div class="text-danger">{{ form.cidade.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.nr_imovel.id_for_label }}" class="form-label fw-bold">{{ form.nr_imovel.label }}</label>
+                    {{ form.nr_imovel }}
+                    {% if form.nr_imovel.errors %}
+                        <div class="text-danger">{{ form.nr_imovel.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.erro_cep.id_for_label }}" class="form-label fw-bold">{{ form.erro_cep.label }}</label>
+                    {{ form.erro_cep }}
+                    {% if form.erro_cep.errors %}
+                        <div class="text-danger">{{ form.erro_cep.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão Centralizado -->
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2">Salvar Registro Escola</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

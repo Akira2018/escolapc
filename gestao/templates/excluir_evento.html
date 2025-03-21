@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Excluir Evento</h2>
+
+    <!-- Exibir mensagens de erro ou sucesso -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <label for="evento_id" class="form-label fw-bold">Selecione o evento para excluir:</label>
+        <select name="evento_id" class="form-control w-50 mx-auto" required>
+            <option value="" selected disabled>-- Selecione um evento --</option>
+            {% for evento in eventos %}
+                <option value="{{ evento.evento_id }}">{{ evento.nome_evento }} - {{ evento.local }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-danger mt-3">Excluir</button>
+        <a href="{% url 'cadastro_eventos' %}" class="btn btn-secondary mt-3">Voltar</a>
+    </form>
+</div>
+{% endblock %}

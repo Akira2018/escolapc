@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Vídeos</h2>
+
+    <!-- Exibir mensagens de erro -->
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Erro ao salvar o vídeo:</strong> Verifique os campos abaixo.
+        </div>
+    {% endif %}
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Coluna Esquerda -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.nome_video.label }}</label>
+                    {{ form.nome_video }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.ano_publicacao.label }}</label>
+                    {{ form.ano_publicacao }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.colecao.label }}</label>
+                    {{ form.colecao }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.qtvideos.label }}</label>
+                    {{ form.qtvideos }}
+                </div>
+            </div>
+
+            <!-- Coluna Direita -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.estante.label }}</label>
+                    {{ form.estante }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.observacao.label }}</label>
+                    {{ form.observacao }}
+                </div>
+
+                <!-- ✅ Campo Escola corrigido -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Escola</label>
+                    {% if request.user.is_superuser %}
+                        {{ form.escola }}
+                    {% else %}
+                        <input type="hidden" name="escola" value="{{ request.user.escola.escola_id }}">
+                        <input type="text" class="form-control" value="{{ request.user.escola }}" readonly>
+                    {% endif %}
+                </div>
+                <!-- ✅ Data do Cadastro corrigida -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Data do Cadastro</label>
+                    <input type="hidden" name="data_cadastro" value="{% now 'd/m/Y' %}">
+                    <input type="text" class="form-control" value="{% now 'd/m/Y' %}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exibir erros específicos dos campos -->
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ field.label }}:</strong> {{ field.errors|striptags }}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'admin:gestao_videos_changelist' %}" class="btn btn-warning">
+                Alterar Registro de Vídeos
+            </a>
+            <button type="submit" class="btn btn-primary">Salvar Registro</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Voltar ao Menu Principal</a>
+        </div>
+          {% if messages %}
+            <div class="alert-container">
+              {% for message in messages %}
+               <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+              {{ message }}
+               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+          {% endif %}
+    </form>
+    <!-- VLibras (Libras - Acessibilidade) -->
+        <div id="vlibras-container">
+             <div vw class="enabled">
+                  <div vw-access-button class="active"></div>
+                  <div vw-plugin-wrapper>
+                      <div class="vw-plugin-top-wrapper"></div>
+                  </div>
+             </div>
+        </div>
+        <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+     <script>
+         new window.VLibras.Widget('https://vlibras.gov.br/app');
+     </script>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,43 @@
+#localizar_reserva.html
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Localizar Reserva</h2>
+
+    <form method="get" class="text-center mb-4">
+        <input type="text" name="q" class="form-control w-50 mx-auto" placeholder="Digite o nome do cliente">
+        <button type="submit" class="btn btn-warning mt-2">Buscar</button>
+    </form>
+
+    {% if reservas %}
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Cliente</th>
+                    <th>Título</th>
+                    <th>Data de Reserva</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reserva in reservas %}
+                <tr>
+                    <td>{{ reserva.id }}</td>
+                    <td>{{ reserva.nome_cliente }}</td>
+                    <td>{{ reserva.titulo }}</td>
+                    <td>{{ reserva.data_reserva }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif query %}
+        <p class="text-center text-muted">Nenhuma reserva encontrada para "{{ query }}".</p>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <a href="{% url 'cadastro_reservas' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}

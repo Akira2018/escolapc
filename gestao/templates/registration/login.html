@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessar | Gestão de Bibliotecas</title>
+
+    {% load static %}
+
+    <style>
+        /* Estilo Geral */
+        body {
+            background: linear-gradient(to right, #6bb3ff, #005580);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container do Login */
+        #login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+        }
+
+        #branding {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #005580;
+            margin-bottom: 20px;
+        }
+
+        /* Campos do formulário */
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        /* Melhorar acessibilidade ao foco */
+        input:focus {
+            border-color: #005580;
+            outline: 3px solid #005580;
+        }
+
+        /* Botão de login */
+        input[type="submit"] {
+            width: 100%;
+            background: #005580;
+            color: white;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover, input[type="submit"]:focus {
+            background: #004066;
+            outline: 3px solid #fff;
+        }
+
+        /* VLibras - Posicionamento fixo no canto da tela */
+        #vlibras-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VLibras (Acessibilidade em Libras) -->
+    <div id="vlibras-container">
+        <div vw class="enabled">
+            <div vw-access-button class="active"></div>
+            <div vw-plugin-wrapper>
+                <div class="vw-plugin-top-wrapper"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!-- Container de Login -->
+    <div id="login-container">
+        <div id="branding">Gestão da Biblioteca</div>
+
+        <!-- Formulário de Login -->
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-row">
+                <label for="id_username">Usuário:</label>
+                <input type="text" name="username" id="id_username" required autofocus
+                       aria-label="Digite seu nome de usuário" tabindex="1">
+            </div>
+
+            <div class="form-row">
+                <label for="id_password">Senha:</label>
+                <input type="password" name="password" id="id_password" required
+                       aria-label="Digite sua senha" tabindex="2">
+            </div>
+
+            <input type="hidden" name="next" value="{% url 'dashboard' %}">
+
+            <div class="form-row">
+                <input type="submit" value="Entrar" tabindex="3">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

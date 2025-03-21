@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main aria-label="Conteúdo principal">
+    <section aria-labelledby="titulo-videos">
+      <h1 id="titulo-videos">Lista de Vídeos</h1>
+      <ul>
+        {% for video in videos %}
+          <li>
+            <a href="{% url 'video_detail' video.pk %}">{{ video.nome_video }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+{% endblock %}

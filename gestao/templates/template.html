@@ -1,0 +1,11 @@
+<div class="mb-3">
+    <label class="form-label fw-bold">Escola</label>
+    {% if request.user.is_superuser %}
+        {{ form.escola }}
+    {% else %}
+        <!-- Corrigindo para garantir que enviamos o ID correto -->
+        <input type="hidden" name="escola" value="{{ request.user.escola.escola_id }}">
+        <input type="text" class="form-control" value="{{ request.user.escola.nome_escola }}" readonly>
+    {% endif %}
+</div>
+

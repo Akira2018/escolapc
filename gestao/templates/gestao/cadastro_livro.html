@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Livros</h2>
+
+    <!-- Exibir mensagens de erro ou sucesso -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" action="{% url 'cadastro_livro' %}">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Coluna da Esquerda -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.titulo.label }}</label>
+                    {{ form.titulo }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.nome_autor.label }}</label>
+                    {{ form.nome_autor }}
+                    <a href="{% url 'cadastro_autor' %}" class="btn btn-sm btn-secondary">Adicionar Autor</a>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.nome_editora.label }}</label>
+                    {{ form.nome_editora }}
+                    <a href="{% url 'cadastro_editora' %}" class="btn btn-sm btn-secondary">Adicionar Editora</a>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.isbn.label }}</label>
+                    {{ form.isbn }}
+                </div>
+            </div>
+
+            <!-- Coluna da Direita -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.ano_publicacao.label }}</label>
+                    {{ form.ano_publicacao }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.qtlivros.label }}</label>
+                    {{ form.qtlivros }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.localizacao.label }}</label>
+                    {{ form.localizacao }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">{{ form.descricao.label }}</label>
+                    {{ form.descricao }}
+                </div>
+
+                <!-- Exibir a Escola -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Escola</label>
+                    {% if request.user.is_superuser %}
+                        {{ form.escola }}
+                    {% else %}
+                        <input type="hidden" name="escola" value="{{ request.user.escola.escola_id }}">
+                        <input type="text" class="form-control" value="{{ request.user.escola }}" disabled>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Exibir erros nos campos -->
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ field.label }}:</strong> {{ field.errors|striptags }}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Botões -->
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="{% url 'admin:gestao_livros_changelist' %}" class="btn btn-warning">
+                Alterar Registro de Livros
+            </a>
+            <button type="submit" class="btn btn-primary">Salvar Registro de Livros</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Voltar ao Menu Principal</a>
+        </div>
+        <!-- VLibras (Libras - Acessibilidade) -->
+        <div id="vlibras-container">
+            <div vw class="enabled">
+                 <div vw-access-button class="active"></div>
+                 <div vw-plugin-wrapper>
+                      <div class="vw-plugin-top-wrapper"></div>
+                 </div>
+            </div>
+        </div>
+            <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+        <script>
+             new window.VLibras.Widget('https://vlibras.gov.br/app');
+        </script>
+    </form>
+</div>
+{% endblock %}

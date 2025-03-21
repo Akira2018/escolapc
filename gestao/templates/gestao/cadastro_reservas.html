@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Reserva de Livros</h2>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Coluna da Esquerda -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="{{ form.titulo.id_for_label }}" class="form-label fw-bold">{{ form.titulo.label }}</label>
+                    {{ form.titulo }}
+                    {% if form.titulo.errors %}
+                        <div class="text-danger">{{ form.titulo.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.nome_cliente.id_for_label }}" class="form-label fw-bold">{{ form.nome_cliente.label }}</label>
+                    {{ form.nome_cliente }}
+                    {% if form.nome_cliente.errors %}
+                        <div class="text-danger">{{ form.nome_cliente.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.data_reserva.id_for_label }}" class="form-label fw-bold">{{ form.data_reserva.label }}</label>
+                    {{ form.data_reserva }}
+                    {% if form.data_reserva.errors %}
+                        <div class="text-danger">{{ form.data_reserva.errors }}</div>
+                    {% endif %}
+                </div>
+            </div> <!-- Fim da Coluna da Esquerda -->
+
+            <!-- Coluna da Direita -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="{{ form.data_retirada.id_for_label }}" class="form-label fw-bold">{{ form.data_retirada.label }}</label>
+                    {{ form.data_retirada }}
+                    {% if form.data_retirada.errors %}
+                        <div class="text-danger">{{ form.data_retirada.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.data_devolucao.id_for_label }}" class="form-label fw-bold">{{ form.data_devolucao.label }}</label>
+                    {{ form.data_devolucao }}
+                    {% if form.data_devolucao.errors %}
+                        <div class="text-danger">{{ form.data_devolucao.errors }}</div>
+                    {% endif %}
+                </div>
+                <!-- Exibição da Escola -->
+                 <div class="mb-3">
+                      <label class="form-label fw-bold">Escola</label>
+                      {% if request.user.is_superuser %}
+                           {{ form.escola }}
+                      {% else %}
+                          <input type="hidden" name="escola" value="{{ request.user.escola.pk }}">
+                          <input type="text" class="form-control" value="{{ request.user.escola }}" readonly>
+                      {% endif %}
+                 </div>
+            </div> <!-- Fim da Coluna da Direita -->
+        </div> <!-- Fim da Row -->
+
+        <!-- 🔽 Linha dos botões principais -->
+        <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2">Salvar Cadastro Reserva</button>
+            <a href="{% url 'lista_livros' %}" class="btn btn-secondary px-4 py-2 me-2">Ver Livros Cadastrados</a>
+            <a href="{% url 'excluir_reserva' %}" class="btn btn-danger px-4 py-2 me-2">Excluir Registro</a>
+            <a href="{% url 'localizar_reserva' %}" class="btn btn-warning px-4 py-2 me-2">Localizar Registro</a>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Voltar ao Menu Principal</a>
+        </div>
+
+        <!-- 🔽 Nova linha para "Selecionar Reserva para Alterar" -->
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <h5 class="fw-bold">Selecione a reserva para alterar:</h5>
+                <form method="post" class="d-inline-block">
+                    {% csrf_token %}
+                    <select name="reserva_id" class="form-control d-inline-block w-50">
+                        <option value="">-- Selecione uma reserva --</option>
+                        {% for reserva in reservas %}
+                        <option value="{{ reserva.reserva_id }}">{{ reserva.nome_cliente }} - {{ reserva.titulo }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="button" id="alterar-reserva-btn" class="btn btn-info px-4 py-2 ms-2">Alterar Registro</button>
+                </form>
+            </div>
+        </div>
+    </form>
+</div>
+{% if form.errors %}
+    <div class="alert alert-danger">
+        <strong>Erro ao cadastrar a reserva:</strong> Verifique os detalhes abaixo.
+        <ul>
+            {% for field, errors in form.errors.items %}
+                <li><strong>{{ field }}:</strong> {{ errors|striptags }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+<!-- VLibras (Libras - Acessibilidade) -->
+<div id="vlibras-container">
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+<!-- 🔽 Script para Alteração -->
+<script>
+    document.getElementById("alterar-reserva-btn").addEventListener("click", function(event) {
+        event.preventDefault();
+        var reservaId = document.querySelector("[name='reserva_id']").value;
+        if (reservaId) {
+            window.location.href = "/alterar-reserva/" + reservaId + "/";
+        } else {
+            alert("Selecione uma reserva para alterar.");
+        }
+    });
+</script>
+{% endblock %}

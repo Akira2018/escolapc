@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Lista de Livros Cadastrados</h2>
+
+    <!-- Verifica se há livros cadastrados -->
+    {% if livros %}
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Ano de Publicação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.nome_autor }}</td>
+                    <td>{{ livro.ano_publicacao }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center text-muted">Nenhum livro cadastrado para sua escola.</p>
+    {% endif %}
+
+    <div class="text-center mt-3">
+        <a href="{% url 'cadastro_reservas' %}" class="btn btn-primary">Voltar ao Cadastro de Reserva</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Cadastro de Empréstimo de Livros</h2>
+
+    <!-- Exibir mensagens -->
+    {% if messages %}
+    <div class="alert-container">
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form.titulo.label_tag }}
+                    {{ form.titulo }}
+                    {% if form.titulo.errors %}
+                        <div class="text-danger">{{ form.titulo.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ form.nome_cliente.label_tag }}
+                    {{ form.nome_cliente }}
+                    {% if form.nome_cliente.errors %}
+                        <div class="text-danger">{{ form.nome_cliente.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ form.data_emprestimo.label_tag }}
+                    {{ form.data_emprestimo }}
+                    {% if form.data_emprestimo.errors %}
+                        <div class="text-danger">{{ form.data_emprestimo.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    {{ form.data_devolucao.label_tag }}
+                    {{ form.data_devolucao }}
+                    {% if form.data_devolucao.errors %}
+                        <div class="text-danger">{{ form.data_devolucao.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ form.multa.label_tag }}
+                    {{ form.multa }}
+                    {% if form.multa.errors %}
+                        <div class="text-danger">{{ form.multa.errors }}</div>
+                    {% endif %}
+                </div>
+               <div class="mb-3">
+                    {{ form.escola.label_tag }}
+                    {{ form.escola }}
+               </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'admin:gestao_emprestimolivro_changelist' %}" class="btn btn-warning">
+                Alterar Registro de Empréstimo de Livros
+            </a>
+            <button type="submit" class="btn btn-primary">Salvar Registro Empréstimo de Livros</button>
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Voltar ao Menu Principal</a>
+        </div>
+        <!-- VLibras (Libras - Acessibilidade) -->
+<div id="vlibras-container">
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+    </form>
+</div>
+{% endblock %}

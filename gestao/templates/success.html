@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Cadastro realizado com sucesso!</h2>
+    <p class="text-center">A escola foi cadastrada com sucesso.</p>
+    <div class="text-center">
+        <a href="{% url 'cadastro-escola' %}" class="btn btn-primary">Cadastrar outra escola</a>
+        <a href="{% url 'base_site' %}" class="btn btn-secondary">Voltar ao Menu Principal</a>
+    </div>
+</div>
+{% endblock %}

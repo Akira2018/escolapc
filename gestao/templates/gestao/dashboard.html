@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Barra lateral -->
+        <nav class="col-md-3 d-none d-md-block sidebar" style="background-color: #008080;" role="navigation" aria-label="Menu lateral">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column text-white">
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'cadastro_livro' %}" tabindex="1">
+                            📚 Cadastro de Livros
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'cadastro_video' %}" tabindex="2">
+                            🎥 Cadastro de Vídeos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'cadastro_cliente' %}" tabindex="3">
+                            👨‍🎓 Cadastro de Alunos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'cadastro_reservas' %}" tabindex="4">
+                            📅 Cadastro de Reservas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'cadastro_eventos' %}" tabindex="5">
+                            📢 Cadastro de Eventos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'emprestimo_livro' %}" tabindex="6">
+                            📄 Empréstimos de Livros
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'emprestimo_video' %}" tabindex="7">
+                            📄 Empréstimos de Vídeos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light text-nowrap" href="{% url 'base_site' %}" tabindex="8">
+                            📄 Menu Horizontal
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                           <button type="submit" class="nav-link text-light text-nowrap" style="border: none; background: none; cursor: pointer;">
+                          🚪 Sair do Aplicativo</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Conteúdo principal -->
+        <main class="col-md-9 ml-sm-auto px-4">
+            <h2 class="mt-4" aria-live="polite">📊 Painel de Controle</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white" role="region" aria-label="Total de Livros">
+                        <div class="card-body">
+                            <h5>Total de Livros</h5>
+                            <h1 tabindex="9">{{ total_livros|default:0 }}</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card bg-success text-white" role="region" aria-label="Alunos Cadastrados">
+                        <div class="card-body">
+                            <h5>Alunos Cadastrados</h5>
+                            <h1 tabindex="10">{{ total_alunos|default:0 }}</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card" style="background-color: #FFA500; color: #333;" role="region" aria-label="Livros Emprestados">
+                        <div class="card-body">
+                            <h5>Livros Emprestados</h5>
+                            <h1 tabindex="11">{{ livros_emprestados|default:0 }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráfico -->
+            <div class="row mt-4">
+                <div class="col-md-8">
+                    <canvas id="emprestimosChart" aria-label="Gráfico de Livros Emprestados" role="img"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- VLibras (Libras - Acessibilidade) -->
+<div id="vlibras-container">
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('emprestimosChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Livros', 'Alunos', 'Livros Emprestados'],
+            datasets: [
+                {
+                    label: 'Livros',
+                    data: [{{ total_livros|default:0 }}, 0, 0],
+                    backgroundColor: 'blue'
+                },
+                {
+                    label: 'Alunos',
+                    data: [0, {{ total_alunos|default:0 }}, 0],
+                    backgroundColor: 'green'
+                },
+                {
+                    label: 'Livros Emprestados',
+                    data: [0, 0, {{ livros_emprestados|default:0 }}],
+                    backgroundColor: 'orange'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
+
