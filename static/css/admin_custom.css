@@ -1,5 +1,28 @@
 /* Esse codigo formata o campo de Pesquisa de Categoria */
 <style>
+/* Barra lateral maior */
+.sidebar {
+    background-color: #008080;
+    min-width: 280px !important; /* Aumentado para comportar tudo */
+    white-space: nowrap; /* Evita quebra de linha */
+    padding: 10px;
+}
+
+.nav-link {
+    white-space: nowrap; /* Mantém tudo numa linha */
+    font-size: 1rem; /* Ajusta o tamanho */
+}
+</style>
+
+/* Ajuste geral no mobile para que o menu lateral tenha largura total quando aberto */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+</style>
+
+<style>
     .sidebar {
         width: 300px;
         background-color: #212529 !important; /* Preto sólido */

@@ -1,0 +1,33 @@
+
+<ul class="nav flex-column text-white p-3">
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'cadastro_livro' %}">📚 Cadastro de Livros</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'cadastro_video' %}">🎥 Cadastro de Vídeos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'cadastro_cliente' %}">👨‍🎓 Cadastro de Alunos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'cadastro_reservas' %}">📅 Cadastro de Reservas</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'cadastro_eventos' %}">📢 Cadastro de Eventos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'emprestimo_livro' %}">📄 Empréstimos de Livros</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'emprestimo_video' %}">📄 Empréstimos de Vídeos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'base_site' %}">📄 Menu Horizontal</a>
+    </li>
+    <li class="nav-item">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="nav-link text-light" style="border: none; background: none;">🚪 Sair do Aplicativo</button>
+        </form>
+    </li>
+</ul>
