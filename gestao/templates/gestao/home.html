@@ -4,31 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seja Bem-vindo ao Aplicativo</title>
+<<<<<<< HEAD
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     {% load static %}
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     <style>
         /* Estilo para centralizar texto */
         .center {
             text-align: center;
             padding: 20px;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         /* Estilo para centralizar imagem */
         .image-container {
             text-align: center;
             margin-top: 20px;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         .image-container img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         /* Estilo para o botão */
         .btn {
             display: inline-block;
@@ -39,10 +51,16 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
+<<<<<<< HEAD
 
         .btn:hover, .btn:focus {
             background-color: #0056b3;
             outline: 2px solid #0056b3;
+=======
+        .btn:hover, .btn:focus {
+            background-color: #0056b3;
+            outline: 2px solid #0056b3; /* Melhorar visibilidade do foco */
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         }
 
         /* Adaptação para telas menores */
@@ -65,11 +83,15 @@
             background-color: black;
             color: white;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         .high-contrast .btn {
             background-color: yellow;
             color: black;
         }
+<<<<<<< HEAD
 
         /* Botão VLibras */
         #vlibras-container {
@@ -95,10 +117,16 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
     </script>
 
+=======
+    </style>
+</head>
+<body class="{% if high_contrast %}high-contrast{% endif %}">
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     <!-- Container para centralizar conteúdo -->
     <div class="center">
         <h1>Olá! Seja bem-vindo ao aplicativo para Bibliotecas</h1>
         <p>Clique no botão abaixo para acessar o aplicativo:</p>
+<<<<<<< HEAD
 
         <!-- BOTÃO PARA LOGIN -->
         <a href="{% url 'login' %}" class="btn btn-primary" role="button" aria-label="Acessar o aplicativo para Bibliotecas">
@@ -108,15 +136,31 @@
         <!-- Container para a imagem -->
         <div class="image-container">
             <img src="{% get_media_prefix %}ImagemBiblioteca.jpg" alt="Imagem da Biblioteca">
+=======
+        <a href="/admin/" class="btn btn-primary" role="button" aria-label="Acessar o aplicativo para Bibliotecas">Acessar o Aplicativo</a>
+
+        <!-- Container para a imagem -->
+        <div class="image-container">
+            {% load static %}
+            <img src="{{ MEDIA_URL }}/media/ImagemBiblioteca.jpg" alt="Imagem representativa da Biblioteca">
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         </div>
         <p aria-live="polite">Você será redirecionado automaticamente em breve...</p>
     </div>
 
+<<<<<<< HEAD
     <!-- Script para redirecionamento automático (PARA LOGIN) -->
     <script>
         setTimeout(function() {
             window.location.href = "{% url 'login' %}";
         }, 10000); // Redireciona após 10 segundos
+=======
+    <!-- Script para redirecionamento automático -->
+    <script>
+        setTimeout(function() {
+            window.location.href = "/admin/";
+        }, 10000); // Redireciona após 10 segundos (10000 milissegundos)
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     </script>
 
     <!-- Botão de alternância de contraste -->
@@ -127,7 +171,15 @@
         </button>
     </form>
 
+<<<<<<< HEAD
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+=======
+    <!-- Formulário para autenticação (se necessário) -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    </form>
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 </body>
 </html>

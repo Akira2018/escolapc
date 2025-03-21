@@ -38,9 +38,13 @@ LOGIN_REDIRECT_URL = '/accounts/profile/'
 handler403 = 'django.views.defaults.permission_denied'
 
 # settings.py
+<<<<<<< HEAD
 #AUTH_USER_MODEL = 'gestao.User'  # Ajuste 'gestao' para o nome correto do seu app e 'User' para o nome do seu modelo personalizado
 
 AUTH_USER_MODEL = 'gestao.CustomUser'
+=======
+AUTH_USER_MODEL = 'gestao.User'  # Ajuste 'gestao' para o nome correto do seu app e 'User' para o nome do seu modelo personalizado
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 # Diretório base do projeto
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,6 +54,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+<<<<<<< HEAD
 from django.contrib.messages import constants as messages
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -62,6 +67,8 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 # Configuração de Logging
 # Configuração de Logging
 LOGGING = {
@@ -134,8 +141,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+<<<<<<< HEAD
     'gestao.middleware.ForeignKeyActivationMiddleware',
 
+=======
+    #'gestao.middleware.AccessibilityMiddleware',
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 ]
 
 # Configurações do Whitenoise

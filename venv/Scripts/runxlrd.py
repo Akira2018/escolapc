@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!D:\EscolaPC\venv\Scripts\python.exe
+=======
+#!D:\Biblia03\venv\Scripts\python.exe
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 # Copyright (c) 2005-2012 Stephen John Machin, Lingfo Pty Ltd
 # This script is part of the xlrd package, which is released under a
 # BSD-style licence.
