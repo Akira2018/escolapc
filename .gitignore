@@ -1,0 +1,40 @@
+# Ambiente virtual
+venv/
+
+# Configurações específicas do sistema operacional
+*.DS_Store
+*.swp
+*.swo
+*.bak
+*.tmp
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de banco de dados SQLite3
+*.sqlite3
+
+# Arquivos de log
+*.log
+
+# Pasta de arquivos estáticos coletados
+/staticfiles/
+
+# Arquivos de mídia
+/media/
+
+# Configurações do PyCharm ou VSCode (se estiver usando)
+.idea/
+.vscode/
+
+# Arquivos do Heroku (caso crie arquivos locais)
+*.env
+
+# Node modules (caso use npm/yarn)
+node_modules/
+
