@@ -1,3 +1,4 @@
+
 # Ambiente virtual
 venv/
 
@@ -28,7 +29,7 @@ __pycache__/
 # Arquivos de mídia
 /media/
 
-# Configurações do PyCharm ou VSCode (se estiver usando)
+# Configurações do PyCharm ou VSCode
 .idea/
 .vscode/
 
@@ -37,4 +38,3 @@ __pycache__/
 
 # Node modules (caso use npm/yarn)
 node_modules/
-
