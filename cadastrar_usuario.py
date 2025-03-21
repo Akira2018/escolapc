@@ -1,10 +1,16 @@
 import os
 import django
 <<<<<<< HEAD
+<<<<<<< HEAD
 import getpass
 
 # Configura o Django para acessar o banco de dados
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gestao_proj.settings')  # Substitua pelo nome correto do seu projeto
+=======
+
+# Configura o Django para acessar o banco de dados e os modelos
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'gestao_proj.settings')  # Substitua 'gestao_proj' pelo nome correto do seu projeto
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 
 # Configura o Django para acessar o banco de dados e os modelos
@@ -16,6 +22,7 @@ from gestao.models import User  # Importa o modelo de usuário personalizado
 from django.contrib.auth.models import Group
 
 def cadastrar_usuario():
+<<<<<<< HEAD
 <<<<<<< HEAD
     username = input("Digite o nome de usuário: ").strip()
     if not username:
@@ -69,6 +76,8 @@ def cadastrar_usuario():
 if __name__ == "__main__":
     cadastrar_usuario()
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     # Solicita o nome de usuário e a senha para cadastro
     username = input("Digite o nome de usuário: ")
     password = input("Digite a senha: ")
@@ -107,4 +116,7 @@ if __name__ == "__main__":
 
 # Chama a função para cadastro de usuário
 cadastrar_usuario()
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

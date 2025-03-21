@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 from gestao import views  # Importe o views que contém lista_autores
 from .views import home, toggle_contrast
 <<<<<<< HEAD
+<<<<<<< HEAD
 from .views import ListaVideosView, ListaLivrosView, ListaEventosView
 from django.views.generic import TemplateView  # Adicione esta linha
 from django.db import connection
@@ -78,6 +79,8 @@ urlpatterns = [
     path('videos/emprestimo/', views.emprestimo_video, name='emprestimo_video'),
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 from .views import ListaVideosView
 from .views import ListaLivrosView
 
@@ -93,11 +96,15 @@ urlpatterns = [
     path('livros/', ListaLivrosView.as_view(), name='lista_livros'),
     path('videos/', ListaVideosView.as_view(), name='lista_videos'),
     path('toggle-contrast/', toggle_contrast, name='toggle_contrast'),  # A URL para alternar o contraste
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+<<<<<<< HEAD
 <<<<<<< HEAD
     path('dashboard/', views.dashboard, name='dashboard'),
 
@@ -118,6 +125,8 @@ if settings.DEBUG:
 
 
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 

@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',  # Note a vírgula aqui
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    'todos',
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     'todos',
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

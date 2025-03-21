@@ -4,9 +4,12 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User  # Importa o seu modelo de usuário personalizado
 import requests
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from gestao.models import CustomUser  # Certifique-se de importar seu modelo personalizado
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
@@ -15,6 +18,7 @@ from .models import (
     Clientes, Reservas, EmprestimoLivro, EmprestimoVideo
 )
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 class EventosForm(forms.ModelForm):
     class Meta:
@@ -159,6 +163,8 @@ class EditorasForm(forms.ModelForm):
                 self.fields['escola'].initial = None
                 self.fields['escola'].widget.attrs['disabled'] = True  # Impede seleção manual
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 class AutoresForm(forms.ModelForm):
     class Meta:
         model = Autores
@@ -175,11 +181,15 @@ class AutoresForm(forms.ModelForm):
             self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
             self.fields['escola'].initial = escola  # Define a escola inicial
             self.fields['escola'].disabled = True  # Desabilita o campo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class LivroForm(forms.ModelForm):
     class Meta:
         model = Livros
+<<<<<<< HEAD
 <<<<<<< HEAD
         fields = ['titulo', 'nome_autor', 'nome_editora', 'isbn', 'ano_publicacao', 'qtlivros', 'localizacao', 'descricao', 'escola']
         widgets = {
@@ -217,6 +227,8 @@ class LivroForm(forms.ModelForm):
                 self.fields['escola'].initial = None
                 self.fields['escola'].widget.attrs['disabled'] = True  # Impede seleção manual
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -230,11 +242,15 @@ class LivroForm(forms.ModelForm):
             self.fields['escola'].queryset = escola
             self.fields['escola'].initial = escola
             self.fields['escola'].disabled = True  # Desabilita o campo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class VideosForm(forms.ModelForm):
     class Meta:
         model = Videos
+<<<<<<< HEAD
 <<<<<<< HEAD
         fields = ['nome_video', 'ano_publicacao', 'colecao', 'qtvideos', 'estante', 'observacao', 'data_cadastro', 'escola']
         widgets = {
@@ -262,6 +278,8 @@ class VideosForm(forms.ModelForm):
                 self.fields['escola'].initial = usuario.escola
                 self.fields['escola'].widget = forms.HiddenInput()
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -292,11 +310,15 @@ class ClienteForm(forms.ModelForm):
             self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
             self.fields['escola'].initial = escola  # Define a escola inicial
             self.fields['escola'].disabled = True  # Desabilita o campo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class ReservasForm(forms.ModelForm):
     class Meta:
         model = Reservas
+<<<<<<< HEAD
 <<<<<<< HEAD
         fields = ['titulo', 'nome_cliente', 'data_reserva', 'data_retirada', 'data_devolucao', 'escola']
         widgets = {
@@ -319,6 +341,8 @@ class ReservasForm(forms.ModelForm):
                     self.fields['escola'].queryset = Escola.objects.filter(pk=usuario.escola.pk)
                     self.fields['escola'].initial = usuario.escola.pk  # Define a escola inicial correta
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -332,11 +356,15 @@ class ReservasForm(forms.ModelForm):
             self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
             self.fields['escola'].initial = escola  # Define a escola inicial
             self.fields['escola'].disabled = True  # Desabilita o campo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class EmprestimoLivroForm(forms.ModelForm):
     class Meta:
         model = EmprestimoLivro
+<<<<<<< HEAD
 <<<<<<< HEAD
         fields = ['titulo', 'nome_cliente', 'data_emprestimo', 'data_devolucao', 'multa', 'escola']
         widgets = {
@@ -396,6 +424,8 @@ class EmprestimoVideoForm(forms.ModelForm):
                 self.fields['escola'].initial = user.escola
                 self.fields['escola'].widget.attrs['readonly'] = True  # Torna o campo somente leitura
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
@@ -426,12 +456,16 @@ class EmprestimoVideoForm(forms.ModelForm):
             self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
             self.fields['escola'].initial = escola  # Define a escola inicial
             self.fields['escola'].disabled = True  # Desabilita o campo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class EscolaForm(forms.ModelForm):
     class Meta:
         model = Escola
         fields = '__all__'
+<<<<<<< HEAD
 <<<<<<< HEAD
         widgets = {
             'nome_escola': forms.TextInput(attrs={'class': 'form-control'}),
@@ -464,12 +498,18 @@ class EscolaForm(forms.ModelForm):
         return email
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 # Formulário para alteração de usuários existentes
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
 <<<<<<< HEAD
+<<<<<<< HEAD
         model = CustomUser  # Use o modelo personalizado
+=======
+        model = User  # Use o modelo personalizado
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
         model = User  # Use o modelo personalizado
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -478,7 +518,11 @@ class CustomUserChangeForm(UserChangeForm):
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
 <<<<<<< HEAD
+<<<<<<< HEAD
         model = CustomUser  # Use o modelo personalizado
+=======
+        model = User  # Use o modelo personalizado
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
         model = User  # Use o modelo personalizado
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -493,7 +537,11 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserForm(forms.ModelForm):
     class Meta:
 <<<<<<< HEAD
+<<<<<<< HEAD
         model = CustomUser
+=======
+        model = User
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
         model = User
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

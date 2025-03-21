@@ -1,5 +1,6 @@
 from django.contrib import admin
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group, Permission
 from .models import CustomUser, Escola, Livros, Videos, Clientes, Reservas, EmprestimoLivro, EmprestimoVideo
@@ -126,6 +127,8 @@ def custom_admin_view(request):
     }
     return render(request, 'admin/custom_template.html', context)
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 from .models import User, Escola  # Mantenha apenas uma importação
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import ClienteForm, EscolaForm
@@ -190,6 +193,9 @@ class CustomUserAdmin(BaseUserAdmin):
     def has_module_permission(self, request):
         # Oculta do menu principal
         return False
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class BaseEscolaAdmin(admin.ModelAdmin):
@@ -301,8 +307,13 @@ class AssuntosAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
 
 class EventosAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
 <<<<<<< HEAD
+<<<<<<< HEAD
     list_display = ('nome_evento','data_evento','local', 'get_nome_escola')
     search_fields = ('nome_evento','data_evento','local')
+=======
+    list_display = ('nome_evento','data_evento','get_nome_escola')
+    search_fields = ('nome_evento','data_evento')
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     list_display = ('nome_evento','data_evento','get_nome_escola')
     search_fields = ('nome_evento','data_evento')
@@ -326,7 +337,10 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
     ordering = ('titulo',)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Exibir o nome do autor no list_display
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_nome_autor(self, obj):
@@ -334,13 +348,17 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
     get_nome_autor.short_description = 'Nome do Autor'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Exibir o nome da escola no list_display
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_nome_escola(self, obj):
         return obj.escola.nome_escola if obj.escola else 'Escola não definida'
     get_nome_escola.short_description = 'Nome da Escola'
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     # Definir o queryset com base no usuário logado
     def get_queryset(self, request):
@@ -359,6 +377,8 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
 
     # Definir permissões de edição
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.groups.filter(name='Alunos').exists():
@@ -369,6 +389,9 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
             return qs
         return qs.none()
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
@@ -382,7 +405,10 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         return form
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Salvar o modelo com a escola associada ao usuário
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def save_model(self, request, obj, form, change):
@@ -392,8 +418,13 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         super().save_model(request, obj, form, change)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Definir permissões de edição para o grupo "Alunos"
     def has_change_permission(self, request, obj=None):
+=======
+    def has_change_permission(self, request, obj=None):
+        # Bloquear permissão de edição para o grupo "Alunos"
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     def has_change_permission(self, request, obj=None):
         # Bloquear permissão de edição para o grupo "Alunos"
@@ -403,8 +434,13 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         return super().has_change_permission(request, obj)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Bloquear permissão de adição para o grupo "Alunos"
     def has_add_permission(self, request):
+=======
+    def has_add_permission(self, request):
+        # Bloquear permissão de adição para o grupo "Alunos"
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     def has_add_permission(self, request):
         # Bloquear permissão de adição para o grupo "Alunos"
@@ -414,8 +450,13 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         return super().has_add_permission(request)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Bloquear permissão de exclusão para o grupo "Alunos"
     def has_delete_permission(self, request, obj=None):
+=======
+    def has_delete_permission(self, request, obj=None):
+        # Bloquear permissão de exclusão para o grupo "Alunos"
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     def has_delete_permission(self, request, obj=None):
         # Bloquear permissão de exclusão para o grupo "Alunos"
@@ -426,6 +467,7 @@ class LivrosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
 
     # Ocultar o menu "Escola" para não superusuários
     def has_module_permission(self, request):
+<<<<<<< HEAD
 <<<<<<< HEAD
         # Apenas superusuário deve ver o menu
         return request.user.is_superuser
@@ -438,6 +480,8 @@ class VideosAdmin(admin.ModelAdmin):  # Baseado em admin.ModelAdmin para vídeos
 
     # Exibir o nome da escola no list_display
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         if request.user.is_superuser:
             return False  # Apenas superusuário vê o menu
         return False  # Não superusuários não veem o menu
@@ -448,11 +492,15 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
     list_filter = ('nome_video', 'ano_publicacao')
     ordering = ('nome_video',)
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_nome_escola(self, obj):
         return obj.escola.nome_escola if obj.escola else 'Escola não definida'
     get_nome_escola.short_description = 'Nome da Escola'
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     # Definir o queryset com base no usuário logado
     # Definir o queryset com base no usuário logado
@@ -472,6 +520,8 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
 
     # Definir permissões de edição
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         if request.user.groups.filter(name='Alunos').exists():
@@ -482,12 +532,16 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
             return qs
         return qs.none()
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         # Se o usuário for do grupo "Alunos", impedir o acesso à página de edição
         if request.user.groups.filter(name='Alunos').exists():
             raise PermissionDenied("Você não tem permissão para editar este item.")
+<<<<<<< HEAD
 <<<<<<< HEAD
             # Se o usuário não for superusuário, desabilitar a seleção de escola
         if not request.user.is_superuser:
@@ -497,12 +551,17 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
 
     # Salvar o modelo com a escola associada ao usuário
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         # Se o usuário não for superusuário, desabilitar a seleção de escola
         if not request.user.is_superuser:
             form.base_fields['escola'].disabled = True
             form.base_fields['escola'].initial = request.user.escola
         return form
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def save_model(self, request, obj, form, change):
         # Se o usuário não for superusuário, atribuir automaticamente a escola
@@ -511,8 +570,13 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         super().save_model(request, obj, form, change)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Definir permissões de edição para o grupo "Alunos"
     def has_change_permission(self, request, obj=None):
+=======
+    def has_change_permission(self, request, obj=None):
+        # Bloquear permissão de edição para o grupo "Alunos"
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     def has_change_permission(self, request, obj=None):
         # Bloquear permissão de edição para o grupo "Alunos"
@@ -522,8 +586,13 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         return super().has_change_permission(request, obj)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Bloquear permissão de adição para o grupo "Alunos"
     def has_add_permission(self, request):
+=======
+    def has_add_permission(self, request):
+        # Bloquear permissão de adição para o grupo "Alunos"
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     def has_add_permission(self, request):
         # Bloquear permissão de adição para o grupo "Alunos"
@@ -533,11 +602,14 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         return super().has_add_permission(request)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     # Ocultar o menu "Escola" para não superusuários
     def has_module_permission(self, request):
         # Apenas superusuário deve ver o menu
         return request.user.is_superuser
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def has_delete_permission(self, request, obj=None):
         # Bloquear permissão de exclusão para o grupo "Alunos"
         if request.user.groups.filter(name='Alunos').exists():
@@ -549,6 +621,9 @@ class VideosAdmin(admin.ModelAdmin):  # Alterado para admin.ModelAdmin
         if request.user.is_superuser:
             return False  # Apenas superusuário vê o menu
         return False  # Não superusuários não veem o menu
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class EscolaAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
@@ -588,6 +663,7 @@ class EscolaAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
 
 class ClientesAdmin(BaseEscolaAdmin):
 <<<<<<< HEAD
+<<<<<<< HEAD
     list_display = ('nome_cliente', 'email', 'situacao', 'serie', 'nr_telefone', 'tipo_usuario', 'cpf', 'get_nome_escola')
     search_fields = ('nome_cliente', 'email', 'situacao', 'serie', 'nr_telefone', 'tipo_usuario', 'cpf', 'escola__nome_escola')
     ordering = ('nome_cliente',)
@@ -601,17 +677,23 @@ class ClientesAdmin(BaseEscolaAdmin):
         return form
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     list_display = ('nome_cliente', 'email', 'documento', 'nr_telefone', 'tipo_usuario', 'get_nome_escola')
     search_fields = ('nome_cliente', 'email', 'documento', 'nr_telefone', 'escola__nome_escola')  # Use o relacionamento correto
     list_filter = ('nome_cliente',)
     form = ClienteForm
     ordering = ('nome_cliente',)
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def get_nome_escola(self, obj):
         return obj.escola.nome_escola
     get_nome_escola.short_description = 'Nome da Escola'
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     def has_module_permission(self, request):
         """Permite que Gerentes vejam os clientes no menu."""
@@ -629,11 +711,16 @@ class ClientesAdmin(BaseEscolaAdmin):
         """Permite que Gerentes excluam clientes."""
         return request.user.is_superuser or request.user.groups.filter(name='Gerentes').exists()
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     # Ocultar o menu "Escola" para não superusuários
     def has_module_permission(self, request):
         if request.user.is_superuser:
             return False  # Apenas superusuário vê o menu
         return False  # Não superusuários não veem o menu
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class ReservasAdmin(BaseEscolaAdmin):  # Herda de BaseEscolaAdmin
@@ -671,6 +758,7 @@ class ReservasAdmin(BaseEscolaAdmin):  # Herda de BaseEscolaAdmin
         return False  # Não superusuários não veem o menu
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class EmprestimoLivroAdmin(admin.ModelAdmin):
     list_display = (
     'get_titulo', 'get_nome_cliente', 'get_qtlivros', 'data_emprestimo', 'data_devolucao', 'multa', 'escola')
@@ -705,6 +793,8 @@ class EmprestimoLivroAdmin(admin.ModelAdmin):
         return obj.titulo.titulo
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 class EmprestimoLivroAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
     form = EmprestimoLivroForm
     list_display = ('get_titulo', 'get_nome_cliente', 'get_qtlivros', 'data_emprestimo', 'data_devolucao', 'multa','get_nome_escola')
@@ -714,13 +804,19 @@ class EmprestimoLivroAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
 
     def get_titulo(self, obj):
         return obj.titulo.titulo
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_titulo.short_description = 'Nome do Livro'
 
     def get_nome_cliente(self, obj):
         return obj.nome_cliente.nome_cliente
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_nome_cliente.short_description = 'Nome do Cliente'
@@ -728,13 +824,17 @@ class EmprestimoLivroAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
     def get_qtlivros(self, obj):
         return obj.titulo.qtlivros
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_qtlivros.short_description = 'Qtdes de Livros'
 
     def get_nome_escola(self, obj):
         return obj.escola.nome_escola
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     get_nome_escola.short_description = 'Nome da Escola'
@@ -775,6 +875,8 @@ class EmprestimoVideoAdmin(BaseEscolaAdmin):
         return obj.nome_cliente.nome_cliente
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_nome_escola.short_description = 'Nome da Escola'
 
     # Ocultar o menu "Escola" para não superusuários
@@ -796,11 +898,15 @@ class EmprestimoVideoAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
 
     def get_nome_cliente(self, obj):
         return obj.nome_cliente.nome_cliente
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_nome_cliente.short_description = 'Nome do Cliente'
 
     def get_qtvideos(self, obj):
         return obj.nome_video.qtvideos
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     get_qtvideos.short_description = 'Qtdes de Videos'
@@ -811,6 +917,8 @@ class EmprestimoVideoAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
     get_nome_escola.short_description = 'Nome da Escola'
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     get_qtvideos.short_description = 'Quantidade de Vídeos'
 
     def get_nome_escola(self, obj):
@@ -818,6 +926,9 @@ class EmprestimoVideoAdmin(BaseEscolaAdmin):  # Agora herda de BaseEscolaAdmin
     get_nome_escola.short_description = 'Nome da Escola'
 
     # Ocultar o menu "Escola" para não superusuários
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     def has_module_permission(self, request):
         if request.user.is_superuser:
@@ -838,7 +949,11 @@ admin.site.register(Reservas, ReservasAdmin)
 admin.site.register(EmprestimoLivro, EmprestimoLivroAdmin)
 admin.site.register(EmprestimoVideo, EmprestimoVideoAdmin)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+admin.site.register(User, CustomUserAdmin)
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 admin.site.register(User, CustomUserAdmin)
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

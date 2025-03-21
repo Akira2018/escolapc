@@ -14,6 +14,7 @@ import json
 from validate_docbr import CPF
 import time
 <<<<<<< HEAD
+<<<<<<< HEAD
 #from gestao.models import CustomUser  # Caminho correto para o seu modelo CustomUser
 from requests.exceptions import RequestException
 from django.contrib.auth.models import AbstractUser
@@ -21,11 +22,16 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser, Group, Permission
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 from django.contrib.auth.models import User
 from requests.exceptions import RequestException
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from .models import User
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 # Obtendo o logger
 logger = logging.getLogger(__name__)
@@ -37,8 +43,13 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 class Escola(models.Model):
     escola_id = models.AutoField(primary_key=True)
 <<<<<<< HEAD
+<<<<<<< HEAD
     nome_escola = models.CharField(max_length=100, unique=True, verbose_name='Nome da Escola')
     email = models.EmailField(verbose_name='Digite o E-mail', unique=True, blank=True)
+=======
+    nome_escola = models.CharField(max_length=100, verbose_name='Nome da Escola')
+    email = models.EmailField(verbose_name='Digite o E-mail', blank=True)
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     nome_escola = models.CharField(max_length=100, verbose_name='Nome da Escola')
     email = models.EmailField(verbose_name='Digite o E-mail', blank=True)
@@ -108,6 +119,7 @@ class Meta:
     verbose_name_plural = "Nome da Escola"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class CustomUser(AbstractUser):
     escola = models.ForeignKey('gestao.Escola', on_delete=models.CASCADE, null=True, blank=True)
 
@@ -125,6 +137,8 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 # Estendendo o modelo de usuário com AbstractUser
@@ -151,7 +165,11 @@ class Autores(models.Model):
     nacionalidade = models.CharField(max_length=50, verbose_name='Nacionalidade')
     biografia = models.TextField(blank=True, null=True, verbose_name='Biografia')
 <<<<<<< HEAD
+<<<<<<< HEAD
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, verbose_name="Escola")  # ✅ Relacionado com a Escola
+=======
+    escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -169,7 +187,11 @@ class Editoras(models.Model):
     nome_editora = models.CharField(max_length=100, unique=True, verbose_name='Nome da Editora')
     pais = models.CharField(max_length=50, verbose_name='País')
 <<<<<<< HEAD
+<<<<<<< HEAD
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, verbose_name="Escola")  # ✅ Relacionado com a Escola
+=======
+    escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -186,7 +208,11 @@ class Generos(models.Model):
     genero_id = models.AutoField(primary_key=True)
     nome_genero = models.CharField(max_length=100, unique=True, verbose_name='Nome do Gênero')
 <<<<<<< HEAD
+<<<<<<< HEAD
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, verbose_name="Escola")  # ✅ Relacionado com a Escola
+=======
+    escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -203,7 +229,11 @@ class Assuntos(models.Model):
     assunto_id = models.AutoField(primary_key=True)
     descr_assunto = models.CharField(max_length=100, unique=True, verbose_name='Nome do Assunto')
 <<<<<<< HEAD
+<<<<<<< HEAD
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, verbose_name="Escola")  # ✅ Relacionado com a Escola
+=======
+    escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -218,6 +248,7 @@ class Assuntos(models.Model):
 
 class Eventos(models.Model):
     evento_id = models.AutoField(primary_key=True)
+<<<<<<< HEAD
 <<<<<<< HEAD
     nome_evento = models.CharField(max_length=255, verbose_name='Nome do Evento')
     data_evento = models.DateField(verbose_name="Data do Evento")
@@ -235,22 +266,33 @@ class Eventos(models.Model):
             raise ValidationError("Já existe um evento com este nome e data cadastrados.")
         super().save(*args, **kwargs)
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     nome_evento = models.CharField(max_length=255)
     data_evento = models.DateTimeField()
     local = models.CharField(max_length=255)
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
     def __str__(self):
         return self.nome_evento
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     class Meta:
         ordering = ['nome_evento']
         verbose_name = "Evento"
         verbose_name_plural = "Eventos"
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 class Livros(models.Model):
     livro_id = models.AutoField(primary_key=True)  # Define a chave primária corretamente
@@ -266,7 +308,11 @@ class Livros(models.Model):
     localizacao = models.CharField(max_length=100, verbose_name='Localização', blank=True, null=True)
     descricao = models.TextField(blank=True, verbose_name='Descrição', null=True)
 <<<<<<< HEAD
+<<<<<<< HEAD
     escola = models.ForeignKey(Escola, on_delete=models.CASCADE, verbose_name="Escola")  # ✅ Relacionado com a Escola
+=======
+    escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')  # Chave estrangeira para a tabela Escola
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -301,18 +347,24 @@ class Videos(models.Model):
 class Clientes(models.Model):
     cliente_id = models.AutoField(primary_key=True)
 <<<<<<< HEAD
+<<<<<<< HEAD
     nome_cliente = models.CharField(max_length=100, unique=True, verbose_name='Nome do Usuário')
     email = models.EmailField(verbose_name='E-mail', unique=True, blank=True)
     situacao = models.CharField(max_length=30, verbose_name='Situação ', blank=True)
     serie = models.CharField(max_length=30, verbose_name='Série ', blank=True)
     nr_telefone = models.CharField(max_length=30, blank=True, unique=True, verbose_name='Número do Telefone')
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     nome_cliente = models.CharField(max_length=100, verbose_name='Nome do Usuário')
     email = models.EmailField(unique=True, verbose_name='E-mail', blank=True)
     documento = models.CharField(max_length=30, unique=True, verbose_name='Número do Documento', blank=True)
     situacao = models.CharField(max_length=30, verbose_name='Situação ', blank=True)
     serie = models.CharField(max_length=30, verbose_name='Série ', blank=True)
     nr_telefone = models.CharField(max_length=30, unique=True, blank=True, verbose_name='Número do Telefone')
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     tipo_usuario = models.CharField(max_length=30, choices=[
         ('aluno', 'Aluno'),
@@ -324,7 +376,11 @@ class Clientes(models.Model):
         max_length=11,
         validators=[RegexValidator(regex=r'^\d{11}$', message='CPF deve ter 11 dígitos')],
 <<<<<<< HEAD
+<<<<<<< HEAD
         blank=True
+=======
+        unique=True, blank=True
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
         unique=True, blank=True
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -420,6 +476,7 @@ class Clientes(models.Model):
 class Reservas(models.Model):
     reserva_id = models.AutoField(primary_key=True)
 <<<<<<< HEAD
+<<<<<<< HEAD
     titulo = models.ForeignKey(Livros, on_delete=models.CASCADE, verbose_name="Livro")
     nome_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE, verbose_name="Cliente")
     data_reserva = models.DateField(verbose_name="Data da Reserva")
@@ -430,6 +487,8 @@ class Reservas(models.Model):
     def __str__(self):
         return f"{self.titulo} - {self.nome_cliente}"
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     titulo = models.ForeignKey(Livros, on_delete=models.CASCADE, verbose_name='Livro')
     nome_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE, verbose_name='Cliente')
     data_reserva = models.DateField(default=timezone.now, verbose_name='Data da Reserva')
@@ -439,6 +498,9 @@ class Reservas(models.Model):
 
     def __str__(self):
         return f'{self.titulo} - {self.nome_cliente}'
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
     class Meta:
@@ -448,6 +510,7 @@ class Reservas(models.Model):
 
 class EmprestimoLivro(models.Model):
     emprestimo_id = models.AutoField(primary_key=True)
+<<<<<<< HEAD
 <<<<<<< HEAD
     titulo = models.ForeignKey('Livros', on_delete=models.CASCADE, verbose_name='Livro')
     nome_cliente = models.ForeignKey('Clientes', on_delete=models.CASCADE, verbose_name='Cliente')
@@ -482,6 +545,8 @@ class EmprestimoLivro(models.Model):
                 raise ValidationError('Não há exemplares deste livro em estoque.')
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     titulo = models.ForeignKey(Livros, on_delete=models.CASCADE, verbose_name='Livro')
     nome_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE, verbose_name='Cliente')
     data_emprestimo = models.DateField(default=timezone.now, verbose_name='Data do Empréstimo')
@@ -510,6 +575,9 @@ class EmprestimoLivro(models.Model):
 
             if self.titulo.qtlivros <= 0:
                 raise ValidationError('Não há exemplares deste livro em estoque.')
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
             self.titulo.qtlivros -= 1
             self.titulo.save()
@@ -517,9 +585,12 @@ class EmprestimoLivro(models.Model):
         super().save(*args, **kwargs)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         # Retorno ao estoque após devolução
         if self.data_devolucao:
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         # Incrementa o estoque após a devolução
         if self.data_devolucao:
             if self.titulo.qtlivros is None:
@@ -527,6 +598,9 @@ class EmprestimoLivro(models.Model):
             elif isinstance(self.titulo.qtlivros, str):
                 self.titulo.qtlivros = int(self.titulo.qtlivros)  # Converte string para inteiro
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
             self.titulo.qtlivros += 1
             self.titulo.save()
@@ -542,9 +616,15 @@ class EmprestimoLivro(models.Model):
 class EmprestimoVideo(models.Model):
     emprestimo_id = models.AutoField(primary_key=True)
 <<<<<<< HEAD
+<<<<<<< HEAD
     nome_video = models.ForeignKey('Videos', on_delete=models.CASCADE, verbose_name='Vídeo')
     nome_cliente = models.ForeignKey('Clientes', on_delete=models.CASCADE, verbose_name='Cliente')
     data_emprestimo = models.DateField(default=timezone.now, verbose_name='Data do Empréstimo')  # ✅ Adicionado default
+=======
+    nome_video = models.ForeignKey(Videos, on_delete=models.CASCADE, verbose_name='Vídeo')
+    nome_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE, verbose_name='Cliente')
+    data_emprestimo = models.DateField(default=timezone.now, verbose_name='Data do Empréstimo')
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     nome_video = models.ForeignKey(Videos, on_delete=models.CASCADE, verbose_name='Vídeo')
     nome_cliente = models.ForeignKey(Clientes, on_delete=models.CASCADE, verbose_name='Cliente')
@@ -555,6 +635,7 @@ class EmprestimoVideo(models.Model):
     escola = models.ForeignKey('Escola', on_delete=models.CASCADE, verbose_name='Escola')
 
     def save(self, *args, **kwargs):
+<<<<<<< HEAD
 <<<<<<< HEAD
         if not self.data_emprestimo:  # ✅ Se não existir, define a data atual
             self.data_emprestimo = timezone.now().date()
@@ -572,6 +653,8 @@ class EmprestimoVideo(models.Model):
             self.nome_video.save()
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         hoje = timezone.now().date()
 
         # Verificação de estoque ao criar um novo empréstimo
@@ -595,13 +678,19 @@ class EmprestimoVideo(models.Model):
     def __str__(self):
         return f'{self.nome_video} - {self.nome_cliente}'
 
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     class Meta:
         ordering = ['data_emprestimo']
         verbose_name = "Empréstimo de Vídeo"
         verbose_name_plural = "Empréstimos de Vídeos"
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

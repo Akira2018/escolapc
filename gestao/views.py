@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.shortcuts import redirect, render, get_object_or_404
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.db import connection
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
@@ -23,11 +24,15 @@ from .forms import (
 =======
 from django.shortcuts import redirect
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
+from django.shortcuts import redirect
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 from .models import (
     Autores, Editoras, Generos, Eventos, Assuntos, Livros, Escola, Videos,
     Clientes, Reservas, EmprestimoLivro, EmprestimoVideo
 )
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def login_view(request):
     if request.method == "POST":
@@ -365,6 +370,8 @@ class EscolaCreateView(CreateView):
     success_url = '/cliente/'  # URL para redirecionamento após cadastro bem-sucedido
 =======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 # Função para alternar o modo de alto contraste e salvar na sessão
 def toggle_contrast(request):
@@ -374,6 +381,10 @@ def toggle_contrast(request):
     return redirect('home')
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -387,6 +398,10 @@ def home(request):
         return render(request, 'gestao/home.html', {'high_contrast': high_contrast})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -413,6 +428,10 @@ def signup(request):
     return render(request, 'signup.html', {'form': form, 'high_contrast': high_contrast})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -431,6 +450,7 @@ def sua_visualizacao(request):
     return render(request, 'login.html', {'form': form, 'high_contrast': high_contrast})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def minha_view(request):
     """
     View para cadastro de livros, garantindo acessibilidade e exibição de erros.
@@ -444,10 +464,15 @@ def minha_view(request):
 
 def minha_view(request):
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
+
+def minha_view(request):
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     if request.method == 'POST':
         form = LivrosForm(request.POST)
         if form.is_valid():
             form.save()
+<<<<<<< HEAD
 <<<<<<< HEAD
             return redirect('success')  # Certifique-se de que 'success' está configurado em urls.py
         else:
@@ -456,16 +481,24 @@ def minha_view(request):
 =======
             return redirect('success')
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
+            return redirect('success')
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     else:
         form = LivrosForm()
 
     high_contrast = request.session.get('high_contrast', False)  # Inclui acessibilidade
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     return render(request, 'template.html', {
         'livros_form': form,
         'high_contrast': high_contrast
     })
+=======
+    return render(request, 'template.html', {'livros_form': form, 'high_contrast': high_contrast})
+
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
     return render(request, 'template.html', {'livros_form': form, 'high_contrast': high_contrast})
 
@@ -478,10 +511,15 @@ class ListaLivrosView(ListView):
 
     def get_queryset(self):
 <<<<<<< HEAD
+<<<<<<< HEAD
         """Filtra os livros pela escola do usuário logado"""
         if self.request.user.is_authenticated:
             return Livros.objects.filter(escola=self.request.user.escola)
         return Livros.objects.none()
+=======
+        escola_do_usuario = self.request.user.escola  # Atribui a escola do usuário logado
+        return Livros.objects.filter(escola=escola_do_usuario)
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
         escola_do_usuario = self.request.user.escola  # Atribui a escola do usuário logado
         return Livros.objects.filter(escola=escola_do_usuario)
@@ -509,6 +547,10 @@ def lista_autores(request):
     return render(request, 'autores/lista_autores.html', {'autores': autores, 'high_contrast': high_contrast})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 =======
 
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
@@ -544,15 +586,21 @@ def dashboard(request):
     return render(request, 'dashboard.html', {'emprestimos': emprestimos, 'high_contrast': high_contrast})
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
 
 =======
+=======
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 def toggle_contrast(request):
     # Alterna o estado de alto contraste na sessão
     current_contrast = request.session.get('high_contrast', False)
     request.session['high_contrast'] = not current_contrast
     return redirect('home')  # Redireciona para a página inicial
+<<<<<<< HEAD
+>>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
+=======
 >>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 
