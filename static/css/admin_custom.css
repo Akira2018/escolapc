@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* Esse codigo formata o campo de Pesquisa de Categoria */
 <style>
     .sidebar {
@@ -90,27 +88,11 @@
 
 #content-main {
     margin-left: 0 !important;
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-/* Oculta o menu original do Django Admin */
-#sidebar {
-    display: none !important; /* Usa !important para garantir que o estilo seja aplicado */
-}
-
-#content-main {
-    margin-left: 0 !important; /* Ajusta a margem do conteúdo principal para preencher o espaço */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 }
 
 /* Contêiner do menu principal */
 #menu {
     display: flex;
-<<<<<<< HEAD
-<<<<<<< HEAD
     flex-direction: row;
     justify-content: flex-start;
     padding: 0;
@@ -120,27 +102,11 @@
     position: relative;
     left: 0;
     z-index: 10;
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-    justify-content: flex-start; /* Alinha os grupos à esquerda da tela */
-    padding: 0;
-    margin: 0;
-    background-color: #40798c; /* Cor de fundo do menu principal */
-    border-bottom: 2px solid #555; /* Adiciona uma borda inferior ao menu principal */
-    position: relative;
-    left: 0;
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 }
 
 /* Estilo dos itens do menu principal */
 .custom-admin-menu {
     display: flex;
-<<<<<<< HEAD
-<<<<<<< HEAD
     flex-direction: row;
     padding: 0;
     margin: 0;
@@ -152,94 +118,32 @@
     margin-right: 120px;
 }
 
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-    padding: 0;
-    margin: 0;
-    list-style: none; /* Remove marcadores de lista */
-}
-
-/* Itens do menu principal */
-.custom-admin-menu > li {
-    position: relative;
-    margin-right: 120px; /* Espaço entre os grupos de menu */
-}
-
-/* Remove qualquer marcador ou ícone padrão ao lado dos itens de menu */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .custom-admin-menu > li::before {
     content: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .custom-admin-menu > li > a {
     text-decoration: none;
     color: #fff;
     padding: 12px 20px;
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-/* Estilo dos links no menu principal */
-.custom-admin-menu > li > a {
-    text-decoration: none;
-    color: #fff; /* Cor do texto dos links */
-    padding: 12px 20px; /* Aumenta o espaçamento para desktop */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     display: block;
     background-color: #40798c;
     border-radius: 4px;
     font-weight: bold;
-<<<<<<< HEAD
-<<<<<<< HEAD
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-    font-size: 1rem; /* Tamanho da fonte adequado para desktop */
-    transition: background-color 0.3s ease; /* Suaviza a transição de cores */
-}
-
-/* Cor de fundo dos itens do menu ao passar o mouse ou ao receber foco */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .custom-admin-menu > li > a:hover, .custom-admin-menu > li > a:focus {
     background-color: #0056b3;
     outline: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 button:focus, a:focus {
     outline: 2px solid #f00;
 }
 
 /* Submenu */
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-/* Foco visível para navegação por teclado */
-button:focus, a:focus {
-    outline: 2px solid #f00; /* Destaque para foco no teclado */
-}
-
-/* Estilo do submenu */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -251,8 +155,6 @@ button:focus, a:focus {
     list-style: none;
     white-space: nowrap;
     border: 1px solid #444;
-<<<<<<< HEAD
-<<<<<<< HEAD
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
@@ -263,37 +165,10 @@ button:focus, a:focus {
     flex-direction: column;
 }
 
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-/* Exibe o submenu ao passar o mouse sobre o item do menu principal ou ao focar */
-.custom-admin-menu > li:hover .dropdown-menu,
-.custom-admin-menu > li:focus-within .dropdown-menu {
-    display: block;
-    flex-direction: column; /* Exibe os itens do submenu verticalmente */
-}
-
-/* Estilo dos itens do submenu */
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .dropdown-menu li {
     margin: 0;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/* Estilo dos links no submenu */
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-/* Estilo dos links no submenu */
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .dropdown-menu li a {
     display: block;
     padding: 8px 16px;
@@ -303,41 +178,18 @@ button:focus, a:focus {
     background-color: #40798c;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/* Cor de fundo dos itens do submenu ao passar o mouse ou ao receber foco */
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-/* Cor de fundo dos itens do submenu ao passar o mouse ou ao receber foco */
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 .dropdown-menu li a:hover, .dropdown-menu li a:focus {
     background-color: #355e62;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* Estilos globais */
 body {
     font-size: 100%;
     background-color: #f0f0f5; /* Substitua #f0f0f5 pela cor desejada */
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-/* Estilos globais para o corpo */
-body {
-    font-size: 100%; /* Define a fonte base como ajustável */
-    background-color: #fff;
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
     color: #333;
     font-family: Arial, sans-serif;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* Login específico */
 .login-container {
     display: flex;
@@ -406,29 +258,3 @@ body {
 }
 
 
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-/* Modo de alto contraste */
-.high-contrast {
-    background-color: #000;
-    color: #fff;
-}
-
-.high-contrast #menu {
-    background-color: #000;
-}
-
-.high-contrast .custom-admin-menu > li > a, .high-contrast .dropdown-menu li a {
-    background-color: #000;
-    color: yellow;
-}
-
-.high-contrast .custom-admin-menu > li > a:hover, .high-contrast .dropdown-menu li a:hover {
-    background-color: yellow;
-    color: #000;
-}
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083

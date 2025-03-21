@@ -7,8 +7,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from gestao import views  # Importe o views que contém lista_autores
 from .views import home, toggle_contrast
-<<<<<<< HEAD
-<<<<<<< HEAD
 from .views import ListaVideosView, ListaLivrosView, ListaEventosView
 from django.views.generic import TemplateView  # Adicione esta linha
 from django.db import connection
@@ -78,34 +76,10 @@ urlpatterns = [
     path('livros/emprestimo/', views.emprestimo_livro, name='emprestimo_livro'),
     path('videos/emprestimo/', views.emprestimo_video, name='emprestimo_video'),
 
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-from .views import ListaVideosView
-from .views import ListaLivrosView
-
-urlpatterns = [
-    path('', home, name='home'),
-    path('login/', LoginView.as_view(), name='login'),  # Corrigido o caminho da página de login
-    path('logout/', LogoutView.as_view(), name='logout'),
-    path('signup/', signup, name='signup'),    # Outras rotas do seu aplicativo...
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),  # Inclui URLs de autenticação padrão
-    path('accounts/login/', LoginView.as_view(), name='login'),  # Definição explícita da URL de login
-    path('autores/', views.lista_autores, name='lista_autores'),  # A função lista_autores agora será reconhecida
-    path('livros/', ListaLivrosView.as_view(), name='lista_livros'),
-    path('videos/', ListaVideosView.as_view(), name='lista_videos'),
-    path('toggle-contrast/', toggle_contrast, name='toggle_contrast'),  # A URL para alternar o contraste
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-<<<<<<< HEAD
-<<<<<<< HEAD
     path('dashboard/', views.dashboard, name='dashboard'),
 
 
@@ -125,10 +99,6 @@ if settings.DEBUG:
 
 
 
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 
 

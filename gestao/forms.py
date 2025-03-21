@@ -3,23 +3,15 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import User  # Importa o seu modelo de usuário personalizado
 import requests
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from gestao.models import CustomUser  # Certifique-se de importar seu modelo personalizado
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 from .models import (
     Autores, Editoras, Generos, Assuntos, Eventos, Livros, Escola, Videos,
     Clientes, Reservas, EmprestimoLivro, EmprestimoVideo
 )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class EventosForm(forms.ModelForm):
     class Meta:
         model = Eventos
@@ -162,35 +154,10 @@ class EditorasForm(forms.ModelForm):
                 self.fields['escola'].queryset = Escola.objects.none()  # Se não houver escola válida
                 self.fields['escola'].initial = None
                 self.fields['escola'].widget.attrs['disabled'] = True  # Impede seleção manual
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-class AutoresForm(forms.ModelForm):
-    class Meta:
-        model = Autores
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o request foi passado e se o usuário não é superusuário
-        if request and not request.user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = request.user.escola  # Obtém a escola associada ao usuário
-            self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
-            self.fields['escola'].initial = escola  # Define a escola inicial
-            self.fields['escola'].disabled = True  # Desabilita o campo
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class LivroForm(forms.ModelForm):
     class Meta:
         model = Livros
-<<<<<<< HEAD
-<<<<<<< HEAD
         fields = ['titulo', 'nome_autor', 'nome_editora', 'isbn', 'ano_publicacao', 'qtlivros', 'localizacao', 'descricao', 'escola']
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control'}),
@@ -226,32 +193,10 @@ class LivroForm(forms.ModelForm):
                 self.fields['escola'].queryset = Escola.objects.none()  # Se não houver escola válida
                 self.fields['escola'].initial = None
                 self.fields['escola'].widget.attrs['disabled'] = True  # Impede seleção manual
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o usuário é superusuário
-        if not user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = user.escola  # Aqui você obtém a escola associada ao usuário
-            self.fields['escola'].queryset = escola
-            self.fields['escola'].initial = escola
-            self.fields['escola'].disabled = True  # Desabilita o campo
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class VideosForm(forms.ModelForm):
     class Meta:
         model = Videos
-<<<<<<< HEAD
-<<<<<<< HEAD
         fields = ['nome_video', 'ano_publicacao', 'colecao', 'qtvideos', 'estante', 'observacao', 'data_cadastro', 'escola']
         widgets = {
             'nome_video': forms.TextInput(attrs={'class': 'form-control'}),
@@ -277,49 +222,10 @@ class VideosForm(forms.ModelForm):
                 self.fields['escola'].queryset = Escola.objects.filter(escola_id=usuario.escola.escola_id)
                 self.fields['escola'].initial = usuario.escola
                 self.fields['escola'].widget = forms.HiddenInput()
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o usuário é superusuário
-        if not user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = user.escola  # Aqui você obtém a escola associada ao usuário
-            self.fields['escola'].queryset = escola
-            self.fields['escola'].initial = escola
-            self.fields['escola'].disabled = True  # Desabilita o campo
-
-class ClienteForm(forms.ModelForm):
-    class Meta:
-        model = Clientes
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o request foi passado e se o usuário não é superusuário
-        if request and not request.user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = request.user.escola  # Obtém a escola associada ao usuário
-            self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
-            self.fields['escola'].initial = escola  # Define a escola inicial
-            self.fields['escola'].disabled = True  # Desabilita o campo
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class ReservasForm(forms.ModelForm):
     class Meta:
         model = Reservas
-<<<<<<< HEAD
-<<<<<<< HEAD
         fields = ['titulo', 'nome_cliente', 'data_reserva', 'data_retirada', 'data_devolucao', 'escola']
         widgets = {
             'titulo': forms.Select(attrs={'class': 'form-control'}),
@@ -340,32 +246,10 @@ class ReservasForm(forms.ModelForm):
                     # ✅ Filtra para garantir que a escola seja corretamente atribuída
                     self.fields['escola'].queryset = Escola.objects.filter(pk=usuario.escola.pk)
                     self.fields['escola'].initial = usuario.escola.pk  # Define a escola inicial correta
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o request foi passado e se o usuário não é superusuário
-        if request and not request.user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = request.user.escola  # Obtém a escola associada ao usuário
-            self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
-            self.fields['escola'].initial = escola  # Define a escola inicial
-            self.fields['escola'].disabled = True  # Desabilita o campo
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class EmprestimoLivroForm(forms.ModelForm):
     class Meta:
         model = EmprestimoLivro
-<<<<<<< HEAD
-<<<<<<< HEAD
         fields = ['titulo', 'nome_cliente', 'data_emprestimo', 'data_devolucao', 'multa', 'escola']
         widgets = {
             'titulo': forms.Select(attrs={'class': 'form-control'}),
@@ -423,50 +307,11 @@ class EmprestimoVideoForm(forms.ModelForm):
                 self.fields['escola'].queryset = self.fields['escola'].queryset.filter(escola_id=user.escola_id)
                 self.fields['escola'].initial = user.escola
                 self.fields['escola'].widget.attrs['readonly'] = True  # Torna o campo somente leitura
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o request foi passado e se o usuário não é superusuário
-        if request and not request.user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = request.user.escola  # Obtém a escola associada ao usuário
-            self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
-            self.fields['escola'].initial = escola  # Define a escola inicial
-            self.fields['escola'].disabled = True  # Desabilita o campo
-
-class EmprestimoVideoForm(forms.ModelForm):
-    class Meta:
-        model = EmprestimoVideo
-        fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        request = kwargs.pop('request', None)  # Recebe o request
-        super().__init__(*args, **kwargs)
-
-        # Verifica se o request foi passado e se o usuário não é superusuário
-        if request and not request.user.is_superuser:
-            # Para não superusuários, o campo escola é fixo e não editável
-            escola = request.user.escola  # Obtém a escola associada ao usuário
-            self.fields['escola'].queryset = Escola.objects.filter(id=escola.id)  # Filtra a escola do usuário
-            self.fields['escola'].initial = escola  # Define a escola inicial
-            self.fields['escola'].disabled = True  # Desabilita o campo
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class EscolaForm(forms.ModelForm):
     class Meta:
         model = Escola
         fields = '__all__'
-<<<<<<< HEAD
-<<<<<<< HEAD
         widgets = {
             'nome_escola': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
@@ -496,36 +341,16 @@ class EscolaForm(forms.ModelForm):
         if email and not "@" in email:
             raise forms.ValidationError("Digite um e-mail válido.")
         return email
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 # Formulário para alteração de usuários existentes
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
-<<<<<<< HEAD
-<<<<<<< HEAD
         model = CustomUser  # Use o modelo personalizado
-=======
-        model = User  # Use o modelo personalizado
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-        model = User  # Use o modelo personalizado
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = ['username', 'first_name', 'last_name', 'email', 'is_active', 'is_staff', 'is_superuser', 'escola']
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
-<<<<<<< HEAD
-<<<<<<< HEAD
         model = CustomUser  # Use o modelo personalizado
-=======
-        model = User  # Use o modelo personalizado
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-        model = User  # Use o modelo personalizado
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = ['username', 'email', 'escola', 'is_superuser']  # Adicione 'is_superuser' aqui se necessário
 
     def clean_email(self):
@@ -536,13 +361,5 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserForm(forms.ModelForm):
     class Meta:
-<<<<<<< HEAD
-<<<<<<< HEAD
         model = CustomUser
-=======
-        model = User
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-        model = User
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
         fields = ['username', 'password', 'first_name', 'last_name', 'email', 'is_active', 'is_staff', 'is_superuser', 'escola']

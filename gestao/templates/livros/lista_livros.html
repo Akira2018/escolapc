@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 {% extends 'base.html' %}
 
 {% block content %}
@@ -34,26 +32,4 @@
         <a href="{% url 'cadastro_reservas' %}" class="btn btn-primary">Voltar ao Cadastro de Reserva</a>
     </div>
 </div>
-=======
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-{% extends "base.html" %}
-
-{% block content %}
-  <main aria-label="Conteúdo principal">
-    <section aria-labelledby="titulo-livros">
-      <h1 id="titulo-livros">Lista de Livros</h1>
-      <ul>
-        {% for livro in livros %}
-          <li>
-            <a href="{% url 'livro_detail' livro.id %}">{{ livro.titulo }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  </main>
-<<<<<<< HEAD
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 {% endblock %}

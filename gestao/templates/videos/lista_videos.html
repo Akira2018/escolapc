@@ -7,15 +7,7 @@
       <ul>
         {% for video in videos %}
           <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
             <a href="{% url 'video_detail' video.pk %}">{{ video.nome_video }}</a>
-=======
-            <a href="{% url 'video_detail' video.id %}">{{ video.nome_video }}</a>
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
-            <a href="{% url 'video_detail' video.id %}">{{ video.nome_video }}</a>
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
           </li>
         {% endfor %}
       </ul>

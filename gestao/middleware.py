@@ -4,13 +4,7 @@ from django.contrib.auth import logout
 from django.utils import timezone
 from django.conf import settings
 from datetime import datetime
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.db import connection
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
 
 class SessionTimeoutMiddleware:
     def __init__(self, get_response):
@@ -28,8 +22,6 @@ class SessionTimeoutMiddleware:
         request.session['last_activity'] = timezone.now().isoformat()
         return response
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 class ForeignKeyActivationMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -41,7 +33,3 @@ class ForeignKeyActivationMiddleware:
         response = self.get_response(request)
         return response
 
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
-=======
->>>>>>> 145c46dcb5b19a9082f2e39ee66b3b5564513083
